@@ -444,8 +444,8 @@ img {
 
 .meta-indicator {
   display: flex;
-  align-items: center;
-  gap: 0.6rem;
+  align-items: flex-start;
+  gap: 0.65rem;
 }
 
 .meta-dot {
@@ -454,12 +454,15 @@ img {
   border-radius: 50%;
   background-color: var(--accent-amber);
   box-shadow: 0 0 10px var(--accent-amber);
+  margin-top: 5px;
+  flex-shrink: 0;
 }
 
 .meta-text {
   font-family: var(--font-mono);
   font-size: 0.68rem;
-  letter-spacing: 0.14em;
+  line-height: 1.55;
+  letter-spacing: 0.12em;
   color: var(--ink-muted);
 }
 

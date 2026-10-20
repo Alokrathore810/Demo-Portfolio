@@ -395,7 +395,7 @@ document.addEventListener('DOMContentLoaded', () => {
   // 11. CONSOLE SIGNATURE
   // ==========================================================================
   console.log(
-    '%c Alok Singh Rathod %c Frontend & MERN Developer · Founder @ Kurukshetra Coding School ',
+    '%c Alok Singh Rathod %c Frontend & MERN Developer · Founder & Entrepreneur @ Kurukshetra Coding School ',
     'background: #fbbf24; color: #000; font-weight: bold; padding: 4px 8px; border-radius: 4px 0 0 4px;',
     'background: #111218; color: #f5f4ef; padding: 4px 8px; border-radius: 0 4px 4px 0;'
   );
