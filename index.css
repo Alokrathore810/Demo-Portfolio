@@ -1714,54 +1714,46 @@ img {
   color: var(--ink-faint);
 }
 
-/* Image Wrap Frame */
+/* Image Wrap Frame - Refined Editorial Stage */
+/* Refined Executive Avatar Frame */
 .leader-img-wrap {
   position: relative;
-  width: 100%;
-  height: 420px;
+  width: 175px;
+  height: 175px;
+  margin: 2.25rem auto 1rem;
+  border-radius: 50%;
   overflow: hidden;
-  background: #06070a;
+  background: #151822;
+  border: 3px solid rgba(251, 191, 36, 0.4);
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.6), 0 0 30px rgba(251, 191, 36, 0.15);
+  transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.4s ease, box-shadow 0.4s ease;
+}
+
+.leader-card:hover .leader-img-wrap {
+  transform: scale(1.05);
+  border-color: rgba(251, 191, 36, 0.8);
+  box-shadow: 0 20px 45px rgba(0, 0, 0, 0.7), 0 0 40px rgba(251, 191, 36, 0.3);
 }
 
 .leader-img-wrap img {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  object-position: center 12%;
-  filter: contrast(1.06) brightness(1.02);
-  transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1), filter 0.5s ease;
+  object-position: center 15%;
+  filter: contrast(1.04) brightness(1.02);
+  transition: transform 0.6s ease;
 }
 
 .leader-card:hover .leader-img-wrap img {
-  transform: scale(1.04);
-  filter: contrast(1.1) brightness(1.05);
+  transform: scale(1.06);
 }
 
 .leader-glow-edge {
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(180deg, transparent 40%, rgba(10, 11, 16, 0.75) 80%, rgba(10, 11, 16, 1) 100%);
-  pointer-events: none;
+  display: none;
 }
 
 .leader-portrait-overlay {
-  position: absolute;
-  bottom: 1.25rem;
-  right: 1.5rem;
-  z-index: 2;
-}
-
-.overlay-tag {
-  font-family: var(--font-mono);
-  font-size: 0.66rem;
-  letter-spacing: 0.08em;
-  color: var(--ink-secondary);
-  background: rgba(9, 10, 15, 0.8);
-  backdrop-filter: blur(10px);
-  border: 1px solid rgba(255, 255, 255, 0.12);
-  padding: 0.35rem 0.8rem;
-  border-radius: 6px;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+  display: none;
 }
 
 /* Leader Dossier Body */
@@ -1774,11 +1766,12 @@ img {
 
 .leader-name-row {
   margin-bottom: 1.15rem;
+  text-align: center;
 }
 
 .leader-name {
   font-family: var(--font-serif);
-  font-size: 2.25rem;
+  font-size: 2.1rem;
   line-height: 1.15;
   color: var(--ink-primary);
   font-weight: 400;
@@ -1791,30 +1784,33 @@ img {
   letter-spacing: 0.07em;
   color: var(--accent-amber);
   display: block;
-  margin-top: 0.35rem;
+  margin-top: 0.4rem;
 }
 
 /* Quote Callout */
 .leader-quote {
   position: relative;
   margin: 0.5rem 0 1.25rem 0;
-  padding: 0.9rem 1.15rem;
+  padding: 0.9rem 1.25rem;
   border-left: 2.5px solid var(--accent-amber);
+  border-right: 2.5px solid var(--accent-amber);
   background: rgba(251, 191, 36, 0.04);
-  border-radius: 0 10px 10px 0;
+  border-radius: 10px;
   font-family: var(--font-serif);
   font-style: italic;
-  font-size: 1.05rem;
+  font-size: 1.02rem;
   line-height: 1.55;
   color: var(--ink-primary);
   quotes: none;
+  text-align: center;
 }
 
 .leader-bio {
-  font-size: 0.94rem;
+  font-size: 0.93rem;
   color: var(--ink-secondary);
   line-height: 1.7;
   margin-bottom: 1.4rem;
+  text-align: center;
 }
 
 /* Skills Wrap */
@@ -1822,6 +1818,7 @@ img {
   display: flex;
   flex-wrap: wrap;
   gap: 0.45rem;
+  justify-content: center;
   margin-bottom: 1.4rem;
 }
 
