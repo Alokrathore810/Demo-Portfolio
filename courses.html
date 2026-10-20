@@ -3,306 +3,692 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Alok Rathod - Teaching Courses: 10th Science, Web Development, C Language">
-  <title>Teaching & Courses - Alok Rathod</title>
+  <meta name="description" content="Kurukshetra Coding School - Courses in Web Development, MERN Stack, Programming Logic, CPCT, and Academic Excellence by Alok Singh Rathod.">
+  <title>Courses & Mentorship | Kurukshetra Coding School - Alok Rathod</title>
+  
+  <!-- Favicon -->
+  <link rel="icon" href="./logo.png" type="image/png">
+
+  <!-- Stylesheets & Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
   <link rel="stylesheet" href="./index.css">
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-  <link rel="icon" href="./logo.png" type="image/x-icon">
+
+  <style>
+    .courses-hero-header {
+      padding: 8rem 0 3.5rem;
+      text-align: center;
+      background: radial-gradient(circle at 50% 20%, rgba(251, 191, 36, 0.08) 0%, transparent 60%);
+    }
+
+    .courses-detailed-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2rem;
+      margin-bottom: 5rem;
+    }
+
+    .course-detail-card {
+      background: var(--bg-surface);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-xl);
+      padding: 2.25rem;
+      display: flex;
+      flex-direction: column;
+      position: relative;
+      transition: var(--transition);
+    }
+
+    .course-detail-card:hover {
+      transform: translateY(-8px);
+      border-color: var(--border-accent);
+      box-shadow: 0 16px 40px rgba(0, 0, 0, 0.5), 0 0 25px var(--accent-glow);
+    }
+
+    .course-card-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 1.5rem;
+    }
+
+    .course-icon-badge {
+      width: 56px;
+      height: 56px;
+      border-radius: var(--radius-md);
+      background: rgba(251, 191, 36, 0.12);
+      border: 1px solid rgba(251, 191, 36, 0.3);
+      color: var(--accent-primary);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.6rem;
+    }
+
+    .course-level-tag {
+      font-size: 0.75rem;
+      font-weight: 600;
+      padding: 0.25rem 0.75rem;
+      border-radius: var(--radius-full);
+      background: var(--bg-surface-elevated);
+      color: var(--accent-primary);
+      border: 1px solid rgba(251, 191, 36, 0.3);
+    }
+
+    .course-detail-card h3 {
+      font-size: 1.45rem;
+      margin-bottom: 0.75rem;
+    }
+
+    .course-detail-card p {
+      font-size: 0.95rem;
+      color: var(--text-secondary);
+      line-height: 1.6;
+      margin-bottom: 1.5rem;
+      flex: 1;
+    }
+
+    .course-info-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.65rem;
+      margin-bottom: 1.75rem;
+      padding: 1.25rem;
+      background: var(--bg-surface-elevated);
+      border-radius: var(--radius-md);
+      border: 1px solid var(--border-subtle);
+    }
+
+    .course-info-list li {
+      font-size: 0.88rem;
+      color: var(--text-secondary);
+      display: flex;
+      align-items: center;
+      gap: 0.65rem;
+    }
+
+    .course-info-list li i {
+      color: var(--accent-primary);
+      font-size: 0.85rem;
+    }
+
+    /* Modals with Dark + Yellow Styling */
+    .course-modal {
+      display: none;
+      position: fixed;
+      inset: 0;
+      z-index: 2500;
+      background: rgba(7, 8, 12, 0.85);
+      backdrop-filter: blur(12px);
+      align-items: center;
+      justify-content: center;
+      padding: 1.5rem;
+    }
+
+    .course-modal.active {
+      display: flex;
+    }
+
+    .course-modal-box {
+      background: var(--bg-surface-elevated);
+      border: 1px solid var(--accent-primary);
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.8), 0 0 35px var(--accent-glow);
+      border-radius: var(--radius-xl);
+      padding: 2.5rem;
+      max-width: 520px;
+      width: 100%;
+      position: relative;
+      animation: modalSlideIn 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    @keyframes modalSlideIn {
+      from { transform: translateY(20px) scale(0.96); opacity: 0; }
+      to { transform: translateY(0) scale(1); opacity: 1; }
+    }
+
+    .modal-close-btn {
+      position: absolute;
+      top: 1.25rem;
+      right: 1.25rem;
+      background: transparent;
+      border: none;
+      color: var(--text-muted);
+      font-size: 1.5rem;
+      cursor: pointer;
+      transition: var(--transition);
+    }
+
+    .modal-close-btn:hover {
+      color: var(--accent-primary);
+      transform: rotate(90deg);
+    }
+
+    .course-modal-box h3 {
+      font-size: 1.6rem;
+      color: var(--accent-primary);
+      margin-bottom: 1.25rem;
+    }
+
+    .modal-details-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.9rem;
+      margin-bottom: 2rem;
+    }
+
+    .modal-details-list li {
+      font-size: 0.95rem;
+      color: var(--text-secondary);
+      line-height: 1.5;
+    }
+
+    .modal-details-list li strong {
+      color: var(--text-white);
+    }
+
+    @media (max-width: 1024px) {
+      .courses-detailed-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 768px) {
+      .courses-detailed-grid {
+        grid-template-columns: 1fr;
+      }
+      .course-modal-box {
+        padding: 1.75rem;
+      }
+    }
+  </style>
 </head>
+
 <body>
-  <header class="main-header">
+  <!-- HEADER -->
+  <header class="main-header" id="mainHeader">
     <div class="header-container">
       <div class="logo">
         <a href="index.html#hero">
-          <img src="logo.png" alt="Alok Rathod Logo">
-          <span>Alok Rathod</span>
+          <img src="./logo.png" alt="Alok Rathod Logo" width="40" height="40">
+          <span class="logo-text">Alok <span>Rathod</span></span>
         </a>
       </div>
+
       <nav class="main-nav" role="navigation" aria-label="Main navigation">
-        <ul class="nav-links">
+        <ul class="nav-links" id="navLinks">
           <li><a href="index.html#hero"><i class="fas fa-home"></i> Home</a></li>
           <li><a href="index.html#about"><i class="fas fa-user"></i> About</a></li>
-          <li><a href="index.html#projects"><i class="fas fa-code"></i> Projects</a></li>
+          <li><a href="index.html#skills"><i class="fas fa-laptop-code"></i> Skills</a></li>
+          <li><a href="index.html#projects"><i class="fas fa-layer-group"></i> Projects</a></li>
           <li><a href="courses.html" class="active"><i class="fas fa-graduation-cap"></i> Teaching</a></li>
+          <li><a href="index.html#team"><i class="fas fa-users"></i> Team</a></li>
           <li><a href="index.html#contact"><i class="fas fa-envelope"></i> Contact</a></li>
         </ul>
       </nav>
+
+      <div class="header-actions">
+        <a href="#enroll" class="btn-header-cta">
+          <span>Enroll Now</span>
+          <i class="fas fa-arrow-right"></i>
+        </a>
+        <button class="mobile-toggle" id="mobileMenuBtn" aria-label="Toggle navigation menu">
+          <i class="fas fa-bars"></i>
+        </button>
+      </div>
     </div>
   </header>
-  <main id="main-content">
-    <section class="features" style="padding-top:7rem;">
-      <div class="section-header">
-        <h3>Our Courses</h3>
-        <p class="section-subtitle">Learn from the best. Choose your path.</p>
-      </div>
-      <div class="feature-grid">
-        <div class="feature-item">
-          <div class="feature-icon">
-            <i class="fas fa-flask"></i>
-          </div>
-          <div class="feature-content">
-            <h4>10th Science</h4>
-            <p>Physics, Chemistry, Biology board exam preparation with practical examples and concept clarity.</p>
-            <div class="skill-tags">
-              <span>Physics</span>
-              <span>Chemistry</span>
-              <span>Biology</span>
-              <span>Practical</span>
-            </div>
-            <button class="btn btn-secondary read-more-btn" data-modal="science-modal">Read More</button>
-          </div>
-        </div>
-        <div class="feature-item">
-          <div class="feature-icon">
-            <i class="fas fa-laptop-code"></i>
-          </div>
-          <div class="feature-content">
-            <h4>Web Development</h4>
-            <p>HTML, CSS, JavaScript, React, Node.js, and project-based learning for real-world skills.</p>
-            <div class="skill-tags">
-              <span>HTML</span>
-              <span>CSS</span>
-              <span>JavaScript</span>
-              <span>React</span>
-              <span>Node.js</span>
-            </div>
-            <button class="btn btn-secondary read-more-btn" data-modal="webdev-modal">Read More</button>
-          </div>
-        </div>
-        <div class="feature-item">
-          <div class="feature-icon">
-            <i class="fas fa-code"></i>
-          </div>
-          <div class="feature-content">
-            <h4>C Language</h4>
-            <p>Programming fundamentals, logic building, and problem solving with hands-on C language practice.</p>
-            <div class="skill-tags">
-              <span>C Basics</span>
-              <span>Logic</span>
-              <span>Problem Solving</span>
-              <span>Programming</span>
-            </div>
-            <button class="btn btn-secondary read-more-btn" data-modal="c-modal">Read More</button>
-          </div>
-        </div>
+
+  <main>
+    <!-- HERO HEADER -->
+    <section class="courses-hero-header">
+      <div class="container">
+        <span class="section-tag"><i class="fas fa-book-open"></i> Kurukshetra Academy</span>
+        <h1 class="section-title">Explore Our <span class="text-gold">Courses & Bootcamps</span></h1>
+        <p class="section-subtitle">
+          Master in-demand development technologies and computer fundamentals with hands-on live project training.
+        </p>
       </div>
     </section>
-    <section class="contact" id="enroll" style="padding-top:3rem;">
-      <div class="section-header">
-        <h3>Enroll Now</h3>
-        <p class="section-subtitle">Interested in any course? Fill the form below to get started!</p>
-      </div>
-      <div class="contact-container">
-        <form class="contact-form" id="enrollForm">
-          <div class="form-group">
-            <label for="student-name">Your Name</label>
-            <input type="text" id="student-name" name="name" placeholder="Enter your name" required>
+
+    <!-- COURSES GRID -->
+    <section class="container">
+      <div class="courses-detailed-grid">
+        
+        <!-- Course 1 -->
+        <div class="course-detail-card">
+          <div class="course-card-top">
+            <div class="course-icon-badge">
+              <i class="fab fa-react"></i>
+            </div>
+            <span class="course-level-tag">Beginner to Pro</span>
           </div>
-          <div class="form-group">
-            <label for="student-email">Your Email</label>
-            <input type="email" id="student-email" name="email" placeholder="Enter your email" required>
-          </div>
-          <div class="form-group">
-            <label for="student-phone">Phone Number</label>
-            <input type="tel" id="student-phone" name="phone" placeholder="Enter your phone number" required>
-          </div>
-          <div class="form-group">
-            <label for="course">Select Course</label>
-            <select id="course" name="course" required>
-              <option value="">-- Select a Course --</option>
-              <option value="10th Science">10th Science</option>
-              <option value="Web Development">Web Development</option>
-              <option value="C Language">C Language</option>
-            </select>
-          </div>
-          <div class="form-group">
-            <label for="message">Your Message</label>
-            <textarea id="message" name="message" placeholder="Enter your message" rows="4"></textarea>
-          </div>
-          <button type="submit" class="btn btn-primary">
-            <i class="fas fa-paper-plane"></i>
-            Enroll Now
+          <h3>Full Stack Web Development</h3>
+          <p>
+            Master HTML5, CSS3, modern JavaScript (ES6+), React.js, Tailwind CSS, Node.js, Express, and MongoDB. Build and deploy real-world enterprise web applications.
+          </p>
+          <ul class="course-info-list">
+            <li><i class="fas fa-clock"></i> <strong>Duration:</strong> 4 Months</li>
+            <li><i class="fas fa-laptop-code"></i> <strong>Mode:</strong> Hybrid (Online + Offline)</li>
+            <li><i class="fas fa-award"></i> <strong>Outcome:</strong> 5+ Live Projects + Certificate</li>
+          </ul>
+          <button class="btn btn-secondary open-modal-btn" data-modal="webdev-modal">
+            <span>Course Details</span>
+            <i class="fas fa-info-circle"></i>
           </button>
-        </form>
+        </div>
+
+        <!-- Course 2 -->
+        <div class="course-detail-card">
+          <div class="course-card-top">
+            <div class="course-icon-badge">
+              <i class="fas fa-code"></i>
+            </div>
+            <span class="course-level-tag">Core Fundamentals</span>
+          </div>
+          <h3>C & Programming Logic</h3>
+          <p>
+            Build rock-solid algorithmic logic, understand memory pointers, data structures, recursion, and core programming paradigms essential for any software career.
+          </p>
+          <ul class="course-info-list">
+            <li><i class="fas fa-clock"></i> <strong>Duration:</strong> 2 Months</li>
+            <li><i class="fas fa-laptop-code"></i> <strong>Mode:</strong> Offline & Interactive</li>
+            <li><i class="fas fa-award"></i> <strong>Outcome:</strong> 100+ Coding Problems Solved</li>
+          </ul>
+          <button class="btn btn-secondary open-modal-btn" data-modal="c-modal">
+            <span>Course Details</span>
+            <i class="fas fa-info-circle"></i>
+          </button>
+        </div>
+
+        <!-- Course 3 -->
+        <div class="course-detail-card">
+          <div class="course-card-top">
+            <div class="course-icon-badge">
+              <i class="fas fa-keyboard"></i>
+            </div>
+            <span class="course-level-tag">Certification Exam</span>
+          </div>
+          <h3>CPCT & Typing Proficiency</h3>
+          <p>
+            Complete coaching for the MP CPCT certification. Covers computer hardware/networking fundamentals, MS Office, Hindi & English fast typing speed training.
+          </p>
+          <ul class="course-info-list">
+            <li><i class="fas fa-clock"></i> <strong>Duration:</strong> 2 - 3 Months</li>
+            <li><i class="fas fa-laptop-code"></i> <strong>Mode:</strong> Daily Lab Practice</li>
+            <li><i class="fas fa-award"></i> <strong>Outcome:</strong> Full Mock Exam Simulations</li>
+          </ul>
+          <button class="btn btn-secondary open-modal-btn" data-modal="cpct-modal">
+            <span>Course Details</span>
+            <i class="fas fa-info-circle"></i>
+          </button>
+        </div>
+
+        <!-- Course 4 -->
+        <div class="course-detail-card">
+          <div class="course-card-top">
+            <div class="course-icon-badge">
+              <i class="fas fa-flask"></i>
+            </div>
+            <span class="course-level-tag">Secondary Education</span>
+          </div>
+          <h3>10th Board Science Coaching</h3>
+          <p>
+            Comprehensive conceptual clarity in Physics, Chemistry, and Biology for CBSE and MP State Board students with real-world experiments and diagram practice.
+          </p>
+          <ul class="course-info-list">
+            <li><i class="fas fa-clock"></i> <strong>Duration:</strong> 6 Months / Fast-track</li>
+            <li><i class="fas fa-laptop-code"></i> <strong>Mode:</strong> Offline Classroom</li>
+            <li><i class="fas fa-award"></i> <strong>Outcome:</strong> Weekly Tests & Revision</li>
+          </ul>
+          <button class="btn btn-secondary open-modal-btn" data-modal="science-modal">
+            <span>Course Details</span>
+            <i class="fas fa-info-circle"></i>
+          </button>
+        </div>
+
+        <!-- Course 5 -->
+        <div class="course-detail-card">
+          <div class="course-card-top">
+            <div class="course-icon-badge">
+              <i class="fas fa-square-root-alt"></i>
+            </div>
+            <span class="course-level-tag">Mathematics</span>
+          </div>
+          <h3>10th Board Mathematics</h3>
+          <p>
+            Master Trigonometry, Quadratic Equations, Coordinate Geometry, Triangles, and Statistics with step-by-step problem-solving shortcuts and doubt clearing.
+          </p>
+          <ul class="course-info-list">
+            <li><i class="fas fa-clock"></i> <strong>Duration:</strong> Academic Year / 4 Mo Crash</li>
+            <li><i class="fas fa-laptop-code"></i> <strong>Mode:</strong> Offline Coaching</li>
+            <li><i class="fas fa-award"></i> <strong>Outcome:</strong> 100% Concept Mastery</li>
+          </ul>
+          <button class="btn btn-secondary open-modal-btn" data-modal="maths-modal">
+            <span>Course Details</span>
+            <i class="fas fa-info-circle"></i>
+          </button>
+        </div>
+
+        <!-- Course 6 -->
+        <div class="course-detail-card">
+          <div class="course-card-top">
+            <div class="course-icon-badge">
+              <i class="fab fa-js"></i>
+            </div>
+            <span class="course-level-tag">Specialization</span>
+          </div>
+          <h3>React & Frontend Masterclass</h3>
+          <p>
+            Deep dive into React Hooks, State Management (Redux Toolkit), Tailwind CSS styling, GSAP animations, API integrations, and building dynamic single-page apps.
+          </p>
+          <ul class="course-info-list">
+            <li><i class="fas fa-clock"></i> <strong>Duration:</strong> 2.5 Months</li>
+            <li><i class="fas fa-laptop-code"></i> <strong>Mode:</strong> Weekend / Evening Batches</li>
+            <li><i class="fas fa-award"></i> <strong>Outcome:</strong> Production Portfolio Ready</li>
+          </ul>
+          <button class="btn btn-secondary open-modal-btn" data-modal="react-modal">
+            <span>Course Details</span>
+            <i class="fas fa-info-circle"></i>
+          </button>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ENROLLMENT FORM SECTION -->
+    <section class="contact-section" id="enroll" style="border-top: 1px solid var(--border-subtle);">
+      <div class="container">
+        
+        <div class="section-header">
+          <span class="section-tag"><i class="fas fa-user-plus"></i> Join Us</span>
+          <h2 class="section-title">Enroll in a <span class="text-gold">Course Today</span></h2>
+          <p class="section-subtitle">
+            Fill out the admission form below and our counseling team will get in touch with you with syllabus and batch schedules.
+          </p>
+        </div>
+
+        <div class="contact-grid">
+          
+          <div class="contact-info-panel">
+            <div class="contact-info-card">
+              <div class="contact-card-icon">
+                <i class="fas fa-map-marker-alt"></i>
+              </div>
+              <div class="contact-card-text">
+                <h4>Academy Location</h4>
+                <p>S-315 Near Kopal School, Nehru Nagar, Bhopal, MP, India</p>
+              </div>
+            </div>
+
+            <div class="contact-info-card">
+              <div class="contact-card-icon">
+                <i class="fas fa-phone-alt"></i>
+              </div>
+              <div class="contact-card-text">
+                <h4>Direct Helpline</h4>
+                <p><a href="tel:+918959478949">+91 8959478949</a></p>
+              </div>
+            </div>
+
+            <div class="contact-info-card">
+              <div class="contact-card-icon">
+                <i class="fas fa-envelope"></i>
+              </div>
+              <div class="contact-card-text">
+                <h4>Admissions Email</h4>
+                <p><a href="mailto:eralokrathod@gmail.com">eralokrathod@gmail.com</a></p>
+              </div>
+            </div>
+          </div>
+
+          <div class="contact-form-container">
+            <form class="contact-form" id="enrollForm">
+              
+              <div class="form-row">
+                <div class="form-group">
+                  <label for="enrollName">Student Name *</label>
+                  <input type="text" id="enrollName" class="form-input" placeholder="Your Full Name" required>
+                </div>
+                <div class="form-group">
+                  <label for="enrollEmail">Email Address *</label>
+                  <input type="email" id="enrollEmail" class="form-input" placeholder="student@example.com" required>
+                </div>
+              </div>
+
+              <div class="form-row">
+                <div class="form-group">
+                  <label for="enrollPhone">Phone / WhatsApp *</label>
+                  <input type="tel" id="enrollPhone" class="form-input" placeholder="+91 8959478949" required>
+                </div>
+                <div class="form-group">
+                  <label for="enrollCourse">Course of Interest *</label>
+                  <select id="enrollCourse" class="form-input" style="background: var(--bg-surface-elevated); color: var(--text-white);" required>
+                    <option value="" style="background: #1a1b2a;">-- Select a Course --</option>
+                    <option value="Full Stack Web Development" style="background: #1a1b2a;">Full Stack Web Development (MERN)</option>
+                    <option value="React & Frontend Masterclass" style="background: #1a1b2a;">React & Frontend Masterclass</option>
+                    <option value="C & Programming Logic" style="background: #1a1b2a;">C & Programming Logic</option>
+                    <option value="CPCT Preparation" style="background: #1a1b2a;">CPCT & Typing Exam Prep</option>
+                    <option value="10th Science" style="background: #1a1b2a;">10th Board Science</option>
+                    <option value="10th Mathematics" style="background: #1a1b2a;">10th Board Mathematics</option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label for="enrollMessage">Any Previous Experience or Questions?</label>
+                <textarea id="enrollMessage" class="form-textarea" placeholder="Let us know your current background, goals, or timing preferences..."></textarea>
+              </div>
+
+              <button type="submit" class="btn btn-primary form-submit-btn" id="enrollSubmitBtn">
+                <span>Submit Enrollment Application</span>
+                <i class="fas fa-paper-plane"></i>
+              </button>
+
+            </form>
+          </div>
+
+        </div>
+
       </div>
     </section>
   </main>
-  <footer class="footer">
-    <div class="footer-content">
-      <div class="footer-brand">
-        <div class="footer-logo">
-          <img src="./logo.png" alt="Alok Rathod Logo">
-          <span>Alok Rathod</span>
-        </div>
-        <p class="footer-description">Full Stack Developer & Tech Educator passionate about creating innovative web solutions and sharing knowledge.</p>
-        <div class="footer-social">
-          <a href="https://github.com/KurukshetraCodingSchool" target="_blank" aria-label="GitHub">
-            <i class="fab fa-github"></i>
-          </a>
-          <a href="https://www.linkedin.com/in/alokrathod" target="_blank" aria-label="LinkedIn">
-            <i class="fab fa-linkedin"></i>
-          </a>
-          <a href="https://www.instagram.com/alokrathod" target="_blank" aria-label="Instagram">
-            <i class="fab fa-instagram"></i>
-          </a>
-        </div>
-      </div>
-      <div class="footer-links">
-        <div class="footer-section">
-          <h4>Quick Links</h4>
-          <ul>
-            <li><a href="index.html#hero">Home</a></li>
-            <li><a href="index.html#about">About</a></li>
-            <li><a href="index.html#projects">Projects</a></li>
-            <li><a href="index.html#contact">Contact</a></li>
-          </ul>
-        </div>
-        <div class="footer-section">
-          <h4>Services</h4>
-          <ul>
-            <li><a href="courses.html">Web Development</a></li>
-            <li><a href="courses.html">Teaching</a></li>
-            <li><a href="courses.html">C Language</a></li>
-            <li><a href="courses.html">10th Science</a></li>
-          </ul>
-        </div>
-        <div class="footer-section">
-          <h4>Contact Info</h4>
-          <ul class="contact-info">
-            <li>
-              <i class="fas fa-map-marker-alt"></i>
-              <span>S-315 Near Kopal School Neharu Nagar, Bhopal, India</span>
-            </li>
-            <li>
-              <i class="fas fa-phone"></i>
-              <span>+91 8959478949</span>
-            </li>
-            <li>
-              <i class="fas fa-envelope"></i>
-              <span>eralokrathod@gmail.com</span>
-            </li>
-          </ul>
-        </div>
-      </div>
+
+  <!-- ==========================================================================
+       COURSE DETAIL MODALS
+       ========================================================================== -->
+  <div id="webdev-modal" class="course-modal">
+    <div class="course-modal-box">
+      <button class="modal-close-btn">&times;</button>
+      <h3>Full Stack Web Dev (MERN)</h3>
+      <ul class="modal-details-list">
+        <li><strong>Syllabus:</strong> HTML5, CSS3, JavaScript (ES6+), React.js, Tailwind CSS, Node.js, Express, MongoDB, REST APIs, Git</li>
+        <li><strong>Duration:</strong> 4 Months (Comprehensive Bootcamp)</li>
+        <li><strong>Class Mode:</strong> Offline Classroom & Live Online</li>
+        <li><strong>Fee Structure:</strong> Contact for latest scholarship discount</li>
+        <li><strong>Key Highlights:</strong> Real-world live projects, resume review, GitHub portfolio setup, interview coaching.</li>
+      </ul>
+      <a href="#enroll" class="btn btn-primary btn-sm modal-enroll-link">Enroll in this Course</a>
     </div>
-    <div class="footer-bottom">
-      <div class="footer-bottom-content">
-        <p>&copy; 2024 Alok Singh. All rights reserved.</p>
+  </div>
+
+  <div id="c-modal" class="course-modal">
+    <div class="course-modal-box">
+      <button class="modal-close-btn">&times;</button>
+      <h3>C & Programming Logic</h3>
+      <ul class="modal-details-list">
+        <li><strong>Syllabus:</strong> Data Types, Conditionals, Loops, Arrays, Strings, Functions, Pointers, Structures, File Handling</li>
+        <li><strong>Duration:</strong> 2 Months</li>
+        <li><strong>Class Mode:</strong> Offline & Practical Lab Sessions</li>
+        <li><strong>Key Highlights:</strong> 100+ algorithmic exercises, dry-run practice on whiteboard, university exam prep.</li>
+      </ul>
+      <a href="#enroll" class="btn btn-primary btn-sm modal-enroll-link">Enroll in this Course</a>
+    </div>
+  </div>
+
+  <div id="cpct-modal" class="course-modal">
+    <div class="course-modal-box">
+      <button class="modal-close-btn">&times;</button>
+      <h3>CPCT & Computer Fundamentals</h3>
+      <ul class="modal-details-list">
+        <li><strong>Syllabus:</strong> Computer Architecture, MS Word/Excel/PowerPoint, Internet, English Typing (30+ WPM), Hindi Remington Gail Typing (20+ WPM)</li>
+        <li><strong>Duration:</strong> 2 - 3 Months</li>
+        <li><strong>Class Mode:</strong> Daily Dedicated Computer Lab Practice</li>
+        <li><strong>Key Highlights:</strong> Weekly mock tests matching the official exam interface, instant typing error analytics.</li>
+      </ul>
+      <a href="#enroll" class="btn btn-primary btn-sm modal-enroll-link">Enroll in this Course</a>
+    </div>
+  </div>
+
+  <div id="science-modal" class="course-modal">
+    <div class="course-modal-box">
+      <button class="modal-close-btn">&times;</button>
+      <h3>10th Board Science Coaching</h3>
+      <ul class="modal-details-list">
+        <li><strong>Syllabus:</strong> Physics, Chemistry & Biology (CBSE / State Board curriculum)</li>
+        <li><strong>Duration:</strong> Regular 6 Months / 3 Months Crash Course</li>
+        <li><strong>Class Mode:</strong> Interactive Classroom with experiment demonstrations</li>
+        <li><strong>Key Highlights:</strong> Chapter-wise question bank, formula sheets, previous 10 years board paper solutions.</li>
+      </ul>
+      <a href="#enroll" class="btn btn-primary btn-sm modal-enroll-link">Enroll in this Course</a>
+    </div>
+  </div>
+
+  <div id="maths-modal" class="course-modal">
+    <div class="course-modal-box">
+      <button class="modal-close-btn">&times;</button>
+      <h3>10th Board Mathematics</h3>
+      <ul class="modal-details-list">
+        <li><strong>Syllabus:</strong> Real Numbers, Polynomials, Linear Equations, Quadratic Equations, Arithmetic Progressions, Triangles, Trigonometry, Statistics & Probability</li>
+        <li><strong>Duration:</strong> Academic Year / Crash Revision Batch</li>
+        <li><strong>Class Mode:</strong> Offline Classroom & Daily Practice Worksheets</li>
+        <li><strong>Key Highlights:</strong> Step-by-step theorem proofs, daily homework evaluation, exam time-management drills.</li>
+      </ul>
+      <a href="#enroll" class="btn btn-primary btn-sm modal-enroll-link">Enroll in this Course</a>
+    </div>
+  </div>
+
+  <div id="react-modal" class="course-modal">
+    <div class="course-modal-box">
+      <button class="modal-close-btn">&times;</button>
+      <h3>React & Frontend Masterclass</h3>
+      <ul class="modal-details-list">
+        <li><strong>Syllabus:</strong> JSX, Functional Components, Custom Hooks, Redux Toolkit, Context API, Tailwind CSS, GSAP ScrollTrigger, Deployment</li>
+        <li><strong>Duration:</strong> 2.5 Months</li>
+        <li><strong>Class Mode:</strong> Online & Weekend Intensive</li>
+        <li><strong>Key Highlights:</strong> Build 3 production-grade React apps including an eCommerce store and dashboard.</li>
+      </ul>
+      <a href="#enroll" class="btn btn-primary btn-sm modal-enroll-link">Enroll in this Course</a>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <div class="logo">
+            <a href="index.html#hero">
+              <img src="./logo.png" alt="Alok Rathod Logo" width="40" height="40">
+              <span class="logo-text">Alok <span>Rathod</span></span>
+            </a>
+          </div>
+          <p class="footer-bio">
+            Founder of Kurukshetra Coding School. Empowering students with modern coding, software development, and academic excellence.
+          </p>
+        </div>
+        <div class="footer-column">
+          <h4 class="footer-heading">Navigation</h4>
+          <ul class="footer-links-list">
+            <li><a href="index.html#hero">Home</a></li>
+            <li><a href="index.html#about">About Me</a></li>
+            <li><a href="index.html#projects">Projects</a></li>
+            <li><a href="courses.html">All Courses</a></li>
+          </ul>
+        </div>
+        <div class="footer-column">
+          <h4 class="footer-heading">Courses</h4>
+          <ul class="footer-links-list">
+            <li><a href="#enroll">Full Stack Web Dev</a></li>
+            <li><a href="#enroll">C Programming</a></li>
+            <li><a href="#enroll">CPCT Exam Prep</a></li>
+            <li><a href="#enroll">10th Board Science & Maths</a></li>
+          </ul>
+        </div>
+        <div class="footer-column">
+          <h4 class="footer-heading">Contact Info</h4>
+          <ul class="footer-contact-items">
+            <li><i class="fas fa-map-marker-alt"></i> Nehru Nagar, Bhopal, MP</li>
+            <li><i class="fas fa-phone-alt"></i> +91 8959478949</li>
+            <li><i class="fas fa-envelope"></i> eralokrathod@gmail.com</li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2026 Alok Singh Rathod. All Rights Reserved. Kurukshetra Coding School.</p>
         <div class="footer-bottom-links">
-          <a href="#">Privacy Policy</a>
-          <a href="#">Terms of Service</a>
-          <a href="#">Cookie Policy</a>
+          <a href="index.html#hero">Back to Portfolio</a>
+          <a href="#enroll">Enroll</a>
         </div>
       </div>
     </div>
   </footer>
-  <!-- Course Details Modals -->
-  <div id="science-modal" class="modal">
-    <div class="modal-content">
-      <span class="close-modal">&times;</span>
-      <h3>10th Science - Course Details</h3>
-      <ul>
-        <li><strong>Syllabus:</strong> Physics, Chemistry, Biology (CBSE/State Board)</li>
-        <li><strong>Duration:</strong> 6 months (Regular), 3 months (Crash)</li>
-        <li><strong>Class Mode:</strong> Offline/Online</li>
-        <li><strong>Fees:</strong> ₹8,000 (Regular), ₹5,000 (Crash)</li>
-        <li><strong>Highlights:</strong> Doubt sessions, Practice tests, Practical demos</li>
-      </ul>
-    </div>
-  </div>
-  <div id="webdev-modal" class="modal">
-    <div class="modal-content">
-      <span class="close-modal">&times;</span>
-      <h3>Web Development - Course Details</h3>
-      <ul>
-        <li><strong>Syllabus:</strong> HTML, CSS, JavaScript, React, Node.js, Projects</li>
-        <li><strong>Duration:</strong> 4 months (Beginner to Advanced)</li>
-        <li><strong>Class Mode:</strong> Offline/Online</li>
-        <li><strong>Fees:</strong> ₹10,000</li>
-        <li><strong>Highlights:</strong> Live projects, Portfolio building, Placement guidance</li>
-      </ul>
-    </div>
-  </div>
-  <div id="c-modal" class="modal">
-    <div class="modal-content">
-      <span class="close-modal">&times;</span>
-      <h3>C Language - Course Details</h3>
-      <ul>
-        <li><strong>Syllabus:</strong> C Basics, Loops, Functions, Arrays, Pointers, File Handling</li>
-        <li><strong>Duration:</strong> 2 months</li>
-        <li><strong>Class Mode:</strong> Offline/Online</li>
-        <li><strong>Fees:</strong> ₹4,000</li>
-        <li><strong>Highlights:</strong> Logic building, Problem solving, Coding practice</li>
-      </ul>
-    </div>
-  </div>
-  <style>
-    .modal {
-      display: none;
-      position: fixed;
-      z-index: 2000;
-      left: 0;
-      top: 0;
-      width: 100vw;
-      height: 100vh;
-      overflow: auto;
-      background: rgba(0,0,0,0.4);
-      justify-content: center;
-      align-items: center;
-    }
-    .modal-content {
-      background: #fff;
-      margin: 5% auto;
-      padding: 2rem;
-      border-radius: 1rem;
-      max-width: 400px;
-      box-shadow: 0 8px 32px rgba(0,0,0,0.2);
-      position: relative;
-      animation: slideUp 0.3s;
-    }
-    .close-modal {
-      position: absolute;
-      top: 1rem;
-      right: 1rem;
-      font-size: 1.5rem;
-      color: #1d4ed8;
-      cursor: pointer;
-      font-weight: bold;
-    }
-    .modal-content h3 {
-      margin-bottom: 1rem;
-      color: #1d4ed8;
-    }
-    .modal-content ul {
-      padding-left: 1.2rem;
-      color: #1e293b;
-    }
-    .modal-content li {
-      margin-bottom: 0.7rem;
-      font-size: 1rem;
-    }
-  </style>
+
+  <!-- Modal Handling Script -->
   <script>
-    document.querySelectorAll('.read-more-btn').forEach(btn => {
+    document.querySelectorAll('.open-modal-btn').forEach(btn => {
       btn.addEventListener('click', function() {
         const modalId = this.getAttribute('data-modal');
-        document.getElementById(modalId).style.display = 'flex';
-      });
-    });
-    document.querySelectorAll('.close-modal').forEach(btn => {
-      btn.addEventListener('click', function() {
-        this.closest('.modal').style.display = 'none';
-      });
-    });
-    window.onclick = function(event) {
-      document.querySelectorAll('.modal').forEach(modal => {
-        if (event.target === modal) {
-          modal.style.display = 'none';
+        const modal = document.getElementById(modalId);
+        if (modal) {
+          modal.classList.add('active');
         }
       });
-    };
+    });
+
+    document.querySelectorAll('.modal-close-btn').forEach(btn => {
+      btn.addEventListener('click', function() {
+        this.closest('.course-modal').classList.remove('active');
+      });
+    });
+
+    document.querySelectorAll('.modal-enroll-link').forEach(link => {
+      link.addEventListener('click', function() {
+        this.closest('.course-modal').classList.remove('active');
+      });
+    });
+
+    window.addEventListener('click', function(event) {
+      document.querySelectorAll('.course-modal').forEach(modal => {
+        if (event.target === modal) {
+          modal.classList.remove('active');
+        }
+      });
+    });
+
+    const enrollForm = document.getElementById('enrollForm');
+    if (enrollForm) {
+      enrollForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const submitBtn = document.getElementById('enrollSubmitBtn');
+        const name = document.getElementById('enrollName').value;
+        if (submitBtn) {
+          submitBtn.disabled = true;
+          submitBtn.innerHTML = '<span>Submitting Application...</span> <i class="fas fa-spinner fa-spin"></i>';
+        }
+        setTimeout(() => {
+          alert('Thank you ' + name + '! Your enrollment request has been submitted. Our team will contact you shortly.');
+          enrollForm.reset();
+          if (submitBtn) {
+            submitBtn.disabled = false;
+            submitBtn.innerHTML = '<span>Submit Enrollment Application</span> <i class="fas fa-paper-plane"></i>';
+          }
+        }, 800);
+      });
+    }
   </script>
   <script src="./index.js"></script>
 </body>
-</html> 
+</html>

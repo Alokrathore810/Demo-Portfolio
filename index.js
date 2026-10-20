@@ -1,292 +1,402 @@
-// Animation and Scroll Handling
-function animateOnScroll() {
-    const elements = document.querySelectorAll('.feature-item, .testimonial-card, .project-card, .about-content');
-    
-    elements.forEach(element => {
-        const elementTop = element.getBoundingClientRect().top;
-        const elementBottom = element.getBoundingClientRect().bottom;
-        
-        if (elementTop < window.innerHeight && elementBottom > 0) {
-            element.style.opacity = '1';
-            element.style.transform = 'translateY(0)';
-            element.classList.add('animate');
-        }
-    });
-}
+/**
+ * ALOK SINGH RATHOD - PORTFOLIO INTERACTIVITY & ANIMATION SUITE
+ * Signature Editorial Experience (Inspired by Sarthak Sharma)
+ * Pure Vanilla JavaScript
+ */
 
-// Initialize animations
-window.addEventListener('load', animateOnScroll);
-window.addEventListener('scroll', animateOnScroll);
-
-// Testimonial Slider
-const testimonialTrack = document.querySelector('.testimonial-track');
-const slides = document.querySelectorAll('.testimonial-slide');
-const prevBtn = document.querySelector('.prev-btn');
-const nextBtn = document.querySelector('.next-btn');
-const dotsContainer = document.querySelector('.slider-dots');
-
-let currentIndex = 0;
-const slideCount = slides.length;
-
-// Create dots
-slides.forEach((_, index) => {
-    const dot = document.createElement('div');
-    dot.classList.add('dot');
-    if (index === 0) dot.classList.add('active');
-    dot.addEventListener('click', () => goToSlide(index));
-    dotsContainer.appendChild(dot);
-});
-
-const dots = document.querySelectorAll('.dot');
-
-function updateSlider() {
-    testimonialTrack.style.transform = `translateX(-${currentIndex * 100}%)`;
-    dots.forEach((dot, index) => {
-        dot.classList.toggle('active', index === currentIndex);
-    });
-}
-
-function goToSlide(index) {
-    currentIndex = index;
-    updateSlider();
-}
-
-function nextSlide() {
-    currentIndex = (currentIndex + 1) % slideCount;
-    updateSlider();
-}
-
-function prevSlide() {
-    currentIndex = (currentIndex - 1 + slideCount) % slideCount;
-    updateSlider();
-}
-
-// Slider event listeners
-nextBtn.addEventListener('click', nextSlide);
-prevBtn.addEventListener('click', prevSlide);
-
-// Auto slide with pause on hover
-let slideInterval = setInterval(nextSlide, 5000);
-
-testimonialTrack.addEventListener('mouseenter', () => clearInterval(slideInterval));
-testimonialTrack.addEventListener('mouseleave', () => {
-    slideInterval = setInterval(nextSlide, 5000);
-});
-
-// Touch events for mobile
-let touchStartX = 0;
-let touchEndX = 0;
-
-testimonialTrack.addEventListener('touchstart', (e) => {
-    touchStartX = e.changedTouches[0].screenX;
-});
-
-testimonialTrack.addEventListener('touchend', (e) => {
-    touchEndX = e.changedTouches[0].screenX;
-    handleSwipe();
-});
-
-function handleSwipe() {
-    const swipeThreshold = 50;
-    const diff = touchStartX - touchEndX;
-    
-    if (Math.abs(diff) > swipeThreshold) {
-        if (diff > 0) {
-            nextSlide();
-        } else {
-            prevSlide();
-        }
-    }
-}
-
-// Loading Animation
 document.addEventListener('DOMContentLoaded', () => {
-    const loader = document.querySelector('.loading-overlay');
-    
-    window.addEventListener('load', () => {
-        setTimeout(() => {
-            loader.style.opacity = '0';
-            setTimeout(() => {
-                loader.style.display = 'none';
-            }, 500);
-        }, 1000);
-    });
-});
 
-// Form Validation and Handling
-const contactForm = document.getElementById('contactForm');
-const newsletterForm = document.getElementById('newsletterForm');
+  // ==========================================================================
+  // 1. FLOATING HEADER SCROLL EFFECTS & ACTIVE SPY
+  // ==========================================================================
+  const header = document.getElementById('editorialHeader');
+  const navLinks = document.querySelectorAll('.nav-anchor');
+  const sections = document.querySelectorAll('section[id], .editorial-section[id]');
 
-if (contactForm) {
-    const submitButton = contactForm.querySelector('button[type="submit"]');
-    const inputs = contactForm.querySelectorAll('input, textarea');
+  function onScroll() {
+    const scrollY = window.scrollY;
 
-    inputs.forEach(input => {
-        input.addEventListener('input', () => validateInput(input));
-        input.addEventListener('blur', () => validateInput(input));
-    });
-
-    contactForm.addEventListener('submit', async (e) => {
-        e.preventDefault();
-        
-        submitButton.classList.add('loading');
-        submitButton.innerHTML = '<i class="fas fa-spinner"></i> Sending...';
-        
-        try {
-            const formData = new FormData(contactForm);
-            const data = Object.fromEntries(formData.entries());
-            
-            // Simulate API call (replace with actual API endpoint)
-            await new Promise(resolve => setTimeout(resolve, 1500));
-            
-            showMessage('Message sent successfully!');
-            contactForm.reset();
-            
-        } catch (error) {
-            showMessage('Error sending message. Please try again.', true);
-        } finally {
-            submitButton.classList.remove('loading');
-            submitButton.innerHTML = '<i class="fas fa-paper-plane"></i> Send Message';
-        }
-    });
-}
-
-if (newsletterForm) {
-    const newsletterInput = newsletterForm.querySelector('input[type="email"]');
-    const newsletterButton = newsletterForm.querySelector('button');
-
-    newsletterInput.addEventListener('input', () => {
-        const email = newsletterInput.value.trim();
-        newsletterForm.classList.toggle('error', email && !isValidEmail(email));
-    });
-
-    newsletterForm.addEventListener('submit', async (e) => {
-        e.preventDefault();
-        
-        const email = newsletterInput.value.trim();
-        if (!isValidEmail(email)) {
-            showNewsletterMessage('Please enter a valid email address', true);
-            return;
-        }
-        
-        newsletterButton.classList.add('loading');
-        newsletterButton.innerHTML = '<i class="fas fa-spinner"></i> Subscribing...';
-        
-        try {
-            await new Promise(resolve => setTimeout(resolve, 1500));
-            showNewsletterMessage('Thank you for subscribing!');
-            newsletterForm.reset();
-            
-        } catch (error) {
-            showNewsletterMessage('Error subscribing. Please try again.', true);
-        } finally {
-            newsletterButton.classList.remove('loading');
-            newsletterButton.innerHTML = 'Subscribe';
-        }
-    });
-}
-
-// Utility Functions
-function validateInput(input) {
-    const value = input.value.trim();
-    
-    if (input.required && !value) {
-        setError(input, 'This field is required');
-    } else if (input.type === 'email' && !isValidEmail(value)) {
-        setError(input, 'Please enter a valid email');
-    } else if (input.type === 'tel' && !isValidPhone(value)) {
-        setError(input, 'Please enter a valid phone number');
-    } else {
-        setSuccess(input);
+    // Header elevation on scroll
+    if (header) {
+      if (scrollY > 40) {
+        header.classList.add('scrolled');
+      } else {
+        header.classList.remove('scrolled');
+      }
     }
-}
 
-function setError(input, message) {
-    const formGroup = input.parentElement;
-    formGroup.classList.add('error');
-    
-    const existingError = formGroup.querySelector('.error-message');
-    if (existingError) existingError.remove();
-    
-    const errorMessage = document.createElement('div');
-    errorMessage.className = 'error-message';
-    errorMessage.textContent = message;
-    formGroup.appendChild(errorMessage);
-}
+    // Scroll spy for navigation pill
+    let currentSectionId = '';
+    const scrollTrigger = scrollY + 280;
 
-function setSuccess(input) {
-    const formGroup = input.parentElement;
-    formGroup.classList.remove('error');
-    
-    const errorMessage = formGroup.querySelector('.error-message');
-    if (errorMessage) errorMessage.remove();
-}
+    sections.forEach(section => {
+      const top = section.offsetTop;
+      const height = section.offsetHeight;
+      if (scrollTrigger >= top && scrollTrigger < top + height) {
+        currentSectionId = section.getAttribute('id');
+      }
+    });
 
-function isValidEmail(email) {
-    return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
-}
+    navLinks.forEach(link => {
+      link.classList.remove('active');
+      if (link.getAttribute('data-section') === currentSectionId) {
+        link.classList.add('active');
+      }
+    });
+  }
 
-function isValidPhone(phone) {
-    return /^\+?[\d\s-]{10,}$/.test(phone);
-}
+  window.addEventListener('scroll', onScroll, { passive: true });
+  onScroll(); // Initial run
 
-function showMessage(message, isError = false) {
-    const messageElement = document.createElement('div');
-    messageElement.className = `success-message ${isError ? 'error' : ''}`;
-    messageElement.textContent = message;
-    document.body.appendChild(messageElement);
-    
-    setTimeout(() => messageElement.classList.add('show'), 100);
-    setTimeout(() => {
-        messageElement.classList.remove('show');
-        setTimeout(() => messageElement.remove(), 300);
-    }, 5000);
-}
-
-function showNewsletterMessage(message, isError = false) {
-    const messageElement = document.createElement('div');
-    messageElement.className = `newsletter-${isError ? 'error' : 'success'}`;
-    messageElement.textContent = message;
-    newsletterForm.appendChild(messageElement);
-    
-    if (isError) {
-        newsletterForm.classList.add('error');
-        setTimeout(() => {
-            newsletterForm.classList.remove('error');
-            messageElement.remove();
-        }, 3000);
-    } else {
-        setTimeout(() => {
-            messageElement.classList.add('show');
-        }, 100);
-        setTimeout(() => {
-            messageElement.classList.remove('show');
-            setTimeout(() => messageElement.remove(), 300);
-        }, 5000);
-    }
-}
-
-// Mobile Menu
-const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
-const navLinks = document.querySelector('.nav-links');
-
-mobileMenuBtn.addEventListener('click', () => {
-    navLinks.classList.toggle('active');
-    mobileMenuBtn.classList.toggle('active');
-});
-
-// Smooth Scroll
-document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+  // ==========================================================================
+  // 2. SMOOTH SCROLL WITH FLOATING PILL OFFSET
+  // ==========================================================================
+  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', function (e) {
+      const targetId = this.getAttribute('href');
+      if (!targetId || targetId === '#') return;
+
+      const targetElement = document.querySelector(targetId);
+      if (targetElement) {
         e.preventDefault();
-        const target = document.querySelector(this.getAttribute('href'));
-        if (target) {
-            target.scrollIntoView({
-                behavior: 'smooth',
-                block: 'start'
-            });
-            navLinks.classList.remove('active');
-            mobileMenuBtn.classList.remove('active');
-        }
+        const headerOffset = 90;
+        const elementPosition = targetElement.getBoundingClientRect().top;
+        const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+
+        window.scrollTo({
+          top: offsetPosition,
+          behavior: 'smooth'
+        });
+
+        // Close mobile drawer if open
+        closeMobileDrawer();
+      }
     });
-}); 
+  });
+
+  // Back to top button
+  const editorialBackTop = document.getElementById('editorialBackTop');
+  if (editorialBackTop) {
+    editorialBackTop.addEventListener('click', (e) => {
+      e.preventDefault();
+      window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+      });
+    });
+  }
+
+  // ==========================================================================
+  // 3. MOBILE DRAWER NAVIGATION
+  // ==========================================================================
+  const mobileToggleBtn = document.getElementById('mobileToggleBtn');
+  const mobileDrawer = document.getElementById('mobileDrawer');
+  const drawerCloseBtn = document.getElementById('drawerCloseBtn');
+
+  function openMobileDrawer() {
+    if (mobileDrawer) {
+      mobileDrawer.classList.add('open');
+      mobileDrawer.setAttribute('aria-hidden', 'false');
+      if (mobileToggleBtn) mobileToggleBtn.setAttribute('aria-expanded', 'true');
+      document.body.style.overflow = 'hidden';
+    }
+  }
+
+  function closeMobileDrawer() {
+    if (mobileDrawer && mobileDrawer.classList.contains('open')) {
+      mobileDrawer.classList.remove('open');
+      mobileDrawer.setAttribute('aria-hidden', 'true');
+      if (mobileToggleBtn) mobileToggleBtn.setAttribute('aria-expanded', 'false');
+      document.body.style.overflow = '';
+    }
+  }
+
+  if (mobileToggleBtn) {
+    mobileToggleBtn.addEventListener('click', openMobileDrawer);
+  }
+
+  if (drawerCloseBtn) {
+    drawerCloseBtn.addEventListener('click', closeMobileDrawer);
+  }
+
+  if (mobileDrawer) {
+    mobileDrawer.addEventListener('click', (e) => {
+      if (e.target === mobileDrawer) {
+        closeMobileDrawer();
+      }
+    });
+  }
+
+  // ==========================================================================
+  // 4. ESSENCE SECTION - DISCIPLINE CARDS INTERACTION
+  // ==========================================================================
+  const disciplineCards = document.querySelectorAll('.discipline-card');
+  disciplineCards.forEach(card => {
+    card.addEventListener('click', () => {
+      disciplineCards.forEach(c => c.classList.remove('active'));
+      card.classList.add('active');
+    });
+  });
+
+  // ==========================================================================
+  // 5. MOTION TOGGLE PILL (Sarthak Sharma Feature)
+  // ==========================================================================
+  const motionToggleBtn = document.getElementById('motionToggleBtn');
+  const motionToggleText = document.getElementById('motionToggleText');
+  const motionIcon = document.getElementById('motionIcon');
+
+  // Check saved preference
+  const isReducedMotion = localStorage.getItem('alok_reduced_motion') === 'true';
+  if (isReducedMotion) {
+    applyMotionState(true);
+  }
+
+  function applyMotionState(reduce) {
+    if (reduce) {
+      document.body.classList.add('reduced-motion');
+      if (motionToggleBtn) motionToggleBtn.classList.add('motion-off');
+      if (motionToggleText) motionToggleText.textContent = 'MOTION OFF';
+      if (motionIcon) {
+        motionIcon.innerHTML = '<polygon points="5 3 19 12 5 21 5 3"></polygon>';
+      }
+    } else {
+      document.body.classList.remove('reduced-motion');
+      if (motionToggleBtn) motionToggleBtn.classList.remove('motion-off');
+      if (motionToggleText) motionToggleText.textContent = 'MOTION ON';
+      if (motionIcon) {
+        motionIcon.innerHTML = '<rect width="4" height="16" x="6" y="4"></rect><rect width="4" height="16" x="14" y="4"></rect>';
+      }
+    }
+    localStorage.setItem('alok_reduced_motion', reduce);
+  }
+
+  if (motionToggleBtn) {
+    motionToggleBtn.addEventListener('click', () => {
+      const currentlyReduced = document.body.classList.contains('reduced-motion');
+      applyMotionState(!currentlyReduced);
+    });
+  }
+
+  // ==========================================================================
+  // 6. AMBIENT CURSOR SPOTLIGHT TRACKER
+  // ==========================================================================
+  const cursorSpotlight = document.getElementById('cursorSpotlight');
+  if (cursorSpotlight && window.matchMedia('(pointer: fine)').matches) {
+    let mouseX = window.innerWidth / 2;
+    let mouseY = window.innerHeight / 2;
+    let currentX = mouseX;
+    let currentY = mouseY;
+    let isMoving = false;
+
+    window.addEventListener('mousemove', (e) => {
+      mouseX = e.clientX;
+      mouseY = e.clientY;
+      if (!isMoving) {
+        isMoving = true;
+        requestAnimationFrame(updateCursorPosition);
+      }
+    }, { passive: true });
+
+    function updateCursorPosition() {
+      // Smooth lerp interpolation
+      currentX += (mouseX - currentX) * 0.15;
+      currentY += (mouseY - currentY) * 0.15;
+
+      cursorSpotlight.style.transform = `translate(${currentX}px, ${currentY}px) translate(-50%, -50%)`;
+
+      const dist = Math.hypot(mouseX - currentX, mouseY - currentY);
+      if (dist > 0.5) {
+        requestAnimationFrame(updateCursorPosition);
+      } else {
+        isMoving = false;
+      }
+    }
+  }
+
+  // ==========================================================================
+  // 7. SCROLL-DRIVEN REVEAL SYSTEM (Intersection Observer)
+  // ==========================================================================
+  // Automatically select all primary content modules
+  const autoRevealSelectors = [
+    '.editorial-section-title',
+    '.work-narrative-note',
+    '.editorial-project-card',
+    '.craft-card',
+    '.pillar-card',
+    '.leader-card',
+    '.timeline-row',
+    '.direct-note-container',
+    '.contact-editorial-heading',
+    '.contact-cta-wrapper',
+    '.generative-wave-card',
+    '.candid-portrait-card',
+    '.discipline-card',
+    '.radial-stat-card'
+  ];
+
+  document.querySelectorAll(autoRevealSelectors.join(',')).forEach((el, index) => {
+    if (!el.hasAttribute('data-reveal')) {
+      el.setAttribute('data-reveal', 'true');
+    }
+  });
+
+  const revealElements = document.querySelectorAll('[data-reveal]');
+  if ('IntersectionObserver' in window && !document.body.classList.contains('reduced-motion')) {
+    const revealObserver = new IntersectionObserver((entries, observer) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('revealed');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, {
+      threshold: 0.12,
+      rootMargin: '0px 0px -40px 0px'
+    });
+
+    revealElements.forEach(el => revealObserver.observe(el));
+  } else {
+    // Fallback: reveal immediately
+    revealElements.forEach(el => el.classList.add('revealed'));
+  }
+
+  // ==========================================================================
+  // 8. ANIMATED NUMBERS COUNTER (Proof Strip)
+  // ==========================================================================
+  const counterElements = document.querySelectorAll('.counter-val');
+  const metricsBar = document.querySelector('.metrics-proof-bar');
+
+  if (counterElements.length > 0 && metricsBar && 'IntersectionObserver' in window) {
+    let hasCounted = false;
+
+    const counterObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting && !hasCounted) {
+          hasCounted = true;
+          counterElements.forEach(counter => {
+            const target = parseInt(counter.getAttribute('data-target'), 10) || 0;
+            animateCounter(counter, target, 1600);
+          });
+          counterObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.25 });
+
+    counterObserver.observe(metricsBar);
+  }
+
+  function animateCounter(element, target, duration = 1500) {
+    let startTimestamp = null;
+    const startValue = 0;
+
+    function step(timestamp) {
+      if (!startTimestamp) startTimestamp = timestamp;
+      const progress = Math.min((timestamp - startTimestamp) / duration, 1);
+      // Ease out cubic
+      const easeProgress = 1 - Math.pow(1 - progress, 3);
+      const currentValue = Math.floor(easeProgress * (target - startValue) + startValue);
+
+      element.textContent = currentValue;
+
+      if (progress < 1) {
+        window.requestAnimationFrame(step);
+      } else {
+        element.textContent = target;
+      }
+    }
+
+    window.requestAnimationFrame(step);
+  }
+
+  // ==========================================================================
+  // 9. 3D MAGNETIC CARD TILT PHYSICS (Portrait, Browser Mockups & Leader Cards)
+  // ==========================================================================
+  const tiltableCards = document.querySelectorAll('.portrait-card, .browser-mock-window, .leader-card');
+  if (window.matchMedia('(pointer: fine)').matches) {
+    tiltableCards.forEach(card => {
+      card.addEventListener('mousemove', (e) => {
+        if (document.body.classList.contains('reduced-motion')) return;
+
+        const rect = card.getBoundingClientRect();
+        const cardX = e.clientX - rect.left; // x position within element
+        const cardY = e.clientY - rect.top;  // y position within element
+
+        const centerX = rect.width / 2;
+        const centerY = rect.height / 2;
+
+        const rotateX = ((cardY - centerY) / centerY) * -6; // max tilt 6deg
+        const rotateY = ((cardX - centerX) / centerX) * 6;
+
+        card.style.transform = `perspective(900px) rotateX(${rotateX.toFixed(2)}deg) rotateY(${rotateY.toFixed(2)}deg) translateY(-4px)`;
+      });
+
+      card.addEventListener('mouseleave', () => {
+        card.style.transform = '';
+      });
+    });
+  }
+
+  // ==========================================================================
+  // 10. DIRECT NOTE DISPATCH FORM HANDLING
+  // ==========================================================================
+  const contactForm = document.getElementById('contactForm');
+  const formToast = document.getElementById('formToast');
+  const toastMessage = document.getElementById('toastMessage');
+  const contactSubmitBtn = document.getElementById('contactSubmitBtn');
+
+  if (contactForm) {
+    contactForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+
+      const nameInput = document.getElementById('userName');
+      const emailInput = document.getElementById('userEmail');
+      const subjectInput = document.getElementById('userSubject');
+
+      const name = nameInput ? nameInput.value.trim() : '';
+      const email = emailInput ? emailInput.value.trim() : '';
+      const subject = subjectInput ? subjectInput.value.trim() : '';
+
+      if (!name || !email) {
+        showToast('Please fill out all required fields.', false);
+        return;
+      }
+
+      // Button feedback state
+      const originalBtnContent = contactSubmitBtn.innerHTML;
+      contactSubmitBtn.disabled = true;
+      contactSubmitBtn.innerHTML = `
+        <span>Sending...</span>
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="spin"><path d="M21 12a9 9 0 1 1-6.219-8.56"></path></svg>
+      `;
+
+      // Simulate sending note
+      setTimeout(() => {
+        contactForm.reset();
+        contactSubmitBtn.disabled = false;
+        contactSubmitBtn.innerHTML = originalBtnContent;
+
+        showToast(`Thank you, ${name}! Your direct message regarding "${subject || 'your inquiry'}" has been dispatched. I'll get back to you shortly at ${email}.`, true);
+      }, 900);
+    });
+  }
+
+  function showToast(message, isSuccess = true) {
+    if (!formToast || !toastMessage) return;
+
+    toastMessage.textContent = message;
+    formToast.classList.add('active');
+
+    setTimeout(() => {
+      formToast.classList.remove('active');
+    }, 5500);
+  }
+
+  // ==========================================================================
+  // 11. CONSOLE SIGNATURE
+  // ==========================================================================
+  console.log(
+    '%c Alok Singh Rathod %c Frontend & MERN Developer · Founder @ Kurukshetra Coding School ',
+    'background: #fbbf24; color: #000; font-weight: bold; padding: 4px 8px; border-radius: 4px 0 0 4px;',
+    'background: #111218; color: #f5f4ef; padding: 4px 8px; border-radius: 0 4px 4px 0;'
+  );
+});
