@@ -1266,6 +1266,35 @@ img {
   color: var(--ink-muted);
 }
 
+.project-links {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+}
+
+.project-github-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: var(--ink-secondary);
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid var(--hairline);
+  padding: 0.4rem 0.9rem;
+  border-radius: 9999px;
+  text-decoration: none;
+  transition: all var(--transition-fast);
+}
+
+.project-github-pill:hover {
+  background: rgba(251, 191, 36, 0.1);
+  border-color: var(--accent-amber);
+  color: var(--accent-amber);
+  transform: translateY(-2px);
+}
+
 /* --------------------------------------------------------------------------
    9. SECTION 03: CRAFT & STACK (Engineering Methodology)
    -------------------------------------------------------------------------- */
