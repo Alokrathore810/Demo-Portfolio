@@ -1243,50 +1243,6 @@ export default function HomePage() {
         </div>
 
       </div>
-
-      
-      <footer className="editorial-footer">
-        <div className="container footer-container">
-          <div className="footer-top-row">
-            <a className="footer-name" href="#hero">
-              Alok Singh Rathod<span>.</span>
-            </a>
-
-            <div className="socials">
-              <a href="https://www.linkedin.com/in/alokrathod" target="_blank" rel="noopener noreferrer">
-                <span>LinkedIn</span>
-                <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="arrow-up-right"><path d="M7 7h10v10"></path><path d="M7 17 17 7"></path></svg>
-              </a>
-              <a href="https://www.instagram.com/thealokrathod/" target="_blank" rel="noopener noreferrer">
-                <span>Instagram</span>
-                <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="arrow-up-right"><path d="M7 7h10v10"></path><path d="M7 17 17 7"></path></svg>
-              </a>
-              <a href="https://github.com/KurukshetraCodingSchool" target="_blank" rel="noopener noreferrer">
-                <span>GitHub</span>
-                <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="arrow-up-right"><path d="M7 7h10v10"></path><path d="M7 17 17 7"></path></svg>
-              </a>
-              <a href="mailto:eralokrathod@gmail.com">
-                <span>Email</span>
-                <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="arrow-up-right"><path d="M7 7h10v10"></path><path d="M7 17 17 7"></path></svg>
-              </a>
-              <a href="https://wa.me/918959478949" target="_blank" rel="noopener noreferrer">
-                <span>WhatsApp</span>
-                <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="arrow-up-right"><path d="M7 7h10v10"></path><path d="M7 17 17 7"></path></svg>
-              </a>
-            </div>
-
-            <a href="#hero" className="back-top" aria-label="Back to top" id="editorialBackTop">
-              <svg xmlns="http://www.w3.org/2000/svg" width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="arrow-up"><path d="m5 12 7-7 7 7"></path><path d="M12 19V5"></path></svg>
-            </a>
-          </div>
-
-          <div className="footer-bottom">
-            <span>© 2026 ALOK SINGH RATHOD</span>
-            <span>BUILT WITH INTENT. ALWAYS EVOLVING.</span>
-            <span>BHOPAL, INDIA ↗ THE WORLD</span>
-          </div>
-        </div>
-      </footer>
     </section>
 
   
