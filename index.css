@@ -904,10 +904,66 @@ img {
   background: var(--bg-surface);
   border: 1px solid var(--hairline);
   border-radius: 16px;
-  padding: 1.5rem;
+  padding: 1.15rem;
   display: flex;
   flex-direction: column;
-  gap: 1rem;
+  gap: 0.9rem;
+  transition: border-color var(--transition-fast), transform var(--transition-fast), box-shadow var(--transition-fast);
+}
+
+.generative-wave-card:hover {
+  border-color: rgba(251, 191, 36, 0.4);
+  transform: translateY(-3px);
+  box-shadow: 0 16px 36px rgba(0, 0, 0, 0.5), 0 0 25px rgba(251, 191, 36, 0.1);
+}
+
+.studio-img-wrap {
+  position: relative;
+  width: 100%;
+  height: 220px;
+  border-radius: 12px;
+  overflow: hidden;
+  background: #090a0f;
+}
+
+.studio-showcase-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1), filter 0.5s ease;
+  filter: brightness(0.92) contrast(1.05);
+}
+
+.generative-wave-card:hover .studio-showcase-img {
+  transform: scale(1.05);
+  filter: brightness(1) contrast(1.08);
+}
+
+.studio-img-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(8, 9, 14, 0.1) 0%, rgba(8, 9, 14, 0.55) 100%);
+  pointer-events: none;
+}
+
+.studio-badge-pill {
+  position: absolute;
+  top: 0.85rem;
+  left: 0.85rem;
+  z-index: 2;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.32rem 0.8rem;
+  border-radius: 999px;
+  background: rgba(10, 11, 16, 0.82);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(251, 191, 36, 0.35);
+  font-family: var(--font-mono);
+  font-size: 0.64rem;
+  letter-spacing: 0.08em;
+  color: var(--accent-amber);
 }
 
 .dot-matrix-svg {
@@ -936,13 +992,26 @@ img {
   border-radius: 16px;
   overflow: hidden;
   background: var(--bg-surface);
+  transition: border-color var(--transition-fast), transform var(--transition-fast), box-shadow var(--transition-fast);
+}
+
+.candid-portrait-card:hover {
+  border-color: rgba(251, 191, 36, 0.4);
+  transform: translateY(-3px);
+  box-shadow: 0 16px 36px rgba(0, 0, 0, 0.5), 0 0 25px rgba(251, 191, 36, 0.1);
 }
 
 .candid-img {
   width: 100%;
   height: 240px;
   object-fit: cover;
-  filter: contrast(1.05) saturate(0.9);
+  object-position: center 20%;
+  filter: contrast(1.05) saturate(0.95);
+  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.candid-portrait-card:hover .candid-img {
+  transform: scale(1.04);
 }
 
 .candid-caption {
@@ -1714,25 +1783,14 @@ img {
   color: var(--ink-faint);
 }
 
-/* Image Wrap Frame - Refined Editorial Stage */
-/* Refined Executive Avatar Frame */
+/* Image Wrap Frame - Executive Portrait Stage */
 .leader-img-wrap {
   position: relative;
-  width: 175px;
-  height: 175px;
-  margin: 2.25rem auto 1rem;
-  border-radius: 50%;
+  width: 100%;
+  height: 480px;
   overflow: hidden;
-  background: #151822;
-  border: 3px solid rgba(251, 191, 36, 0.4);
-  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.6), 0 0 30px rgba(251, 191, 36, 0.15);
-  transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.4s ease, box-shadow 0.4s ease;
-}
-
-.leader-card:hover .leader-img-wrap {
-  transform: scale(1.05);
-  border-color: rgba(251, 191, 36, 0.8);
-  box-shadow: 0 20px 45px rgba(0, 0, 0, 0.7), 0 0 40px rgba(251, 191, 36, 0.3);
+  background: radial-gradient(circle at 50% 30%, #151824 0%, #06070a 80%);
+  border-bottom: 1px solid var(--hairline);
 }
 
 .leader-img-wrap img {
@@ -1741,24 +1799,46 @@ img {
   object-fit: cover;
   object-position: center 15%;
   filter: contrast(1.04) brightness(1.02);
-  transition: transform 0.6s ease;
+  transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1), filter 0.5s ease;
 }
 
 .leader-card:hover .leader-img-wrap img {
-  transform: scale(1.06);
+  transform: scale(1.04);
+  filter: contrast(1.07) brightness(1.04);
 }
 
 .leader-glow-edge {
-  display: none;
+  display: block;
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, transparent 55%, rgba(10, 11, 16, 0.8) 85%, rgba(10, 11, 16, 1) 100%);
+  pointer-events: none;
 }
 
 .leader-portrait-overlay {
-  display: none;
+  display: flex;
+  position: absolute;
+  bottom: 1.25rem;
+  right: 1.35rem;
+  z-index: 2;
+}
+
+.overlay-tag {
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  letter-spacing: 0.08em;
+  color: var(--accent-amber);
+  background: rgba(9, 10, 15, 0.88);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(251, 191, 36, 0.32);
+  padding: 0.38rem 0.85rem;
+  border-radius: 999px;
+  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.7);
 }
 
 /* Leader Dossier Body */
 .leader-meta {
-  padding: 2rem 2.25rem 2.25rem 2.25rem;
+  padding: 1.85rem 2rem 2.25rem 2rem;
   display: flex;
   flex-direction: column;
   flex: 1;
@@ -1766,12 +1846,12 @@ img {
 
 .leader-name-row {
   margin-bottom: 1.15rem;
-  text-align: center;
+  text-align: left;
 }
 
 .leader-name {
   font-family: var(--font-serif);
-  font-size: 2.1rem;
+  font-size: 2.15rem;
   line-height: 1.15;
   color: var(--ink-primary);
   font-weight: 400;
@@ -1780,11 +1860,11 @@ img {
 
 .leader-designation {
   font-family: var(--font-mono);
-  font-size: 0.76rem;
+  font-size: 0.74rem;
   letter-spacing: 0.07em;
   color: var(--accent-amber);
   display: block;
-  margin-top: 0.4rem;
+  margin-top: 0.35rem;
 }
 
 /* Quote Callout */
@@ -1793,16 +1873,16 @@ img {
   margin: 0.5rem 0 1.25rem 0;
   padding: 0.9rem 1.25rem;
   border-left: 2.5px solid var(--accent-amber);
-  border-right: 2.5px solid var(--accent-amber);
+  border-right: none;
   background: rgba(251, 191, 36, 0.04);
-  border-radius: 10px;
+  border-radius: 0 10px 10px 0;
   font-family: var(--font-serif);
   font-style: italic;
   font-size: 1.02rem;
   line-height: 1.55;
   color: var(--ink-primary);
   quotes: none;
-  text-align: center;
+  text-align: left;
 }
 
 .leader-bio {
@@ -1810,7 +1890,7 @@ img {
   color: var(--ink-secondary);
   line-height: 1.7;
   margin-bottom: 1.4rem;
-  text-align: center;
+  text-align: left;
 }
 
 /* Skills Wrap */
@@ -1818,7 +1898,7 @@ img {
   display: flex;
   flex-wrap: wrap;
   gap: 0.45rem;
-  justify-content: center;
+  justify-content: flex-start;
   margin-bottom: 1.4rem;
 }
 

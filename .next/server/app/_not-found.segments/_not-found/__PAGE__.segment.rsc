@@ -1,0 +1,37 @@
+1:"$Sreact.fragment"
+2:"/_next/static/chunks/0umf92h1sb77c.js"
+3:"/_next/static/chunks/3-olfw19x5lqo.js"
+4:I[84323,["$2","$3"],"default"]
+5:I[19069,["$2","$3"],"default"]
+6:I[52793,["$2","$3"],"default"]
+7:I[39756,["$2","$3"],"default"]
+8:I[37457,["$2","$3"],"default"]
+f:I[97367,["$2","$3"],"OutletBoundary"]
+10:"$Sreact.suspense"
+13:"ViewportBoundary"
+14:I[97367,["$2","$3"],"$13"]
+15:"MetadataBoundary"
+16:I[97367,["$2","$3"],"$15"]
+:HL["/_next/static/chunks/2m0543_zcjs7-.css","style"]
+:HL["https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:ital,wght@0,300;0,400;0,500;0,600;1,400&family=Outfit:wght@300;400;500;600;700&display=swap","style"]
+:HL["https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css","style"]
+a:X
+d:X
+d:C
+e:[["children",{"s":"__PAGE__","h":160,"d":{"r":["$","$1","c",{"children":[[["$","title",null,{"children":"404: This page could not be found."}],["$","div",null,{"style":"$0:t:t:d:r:props:children:1:props:children:1:props:children:5:props:children:props:notFound:0:1:props:style","children":["$","div",null,{"children":[["$","style",null,{"dangerouslySetInnerHTML":{"__html":"body{color:#000;background:#fff;margin:0}.next-error-h1{border-right:1px solid rgba(0,0,0,.3)}@media (prefers-color-scheme:dark){body{color:#fff;background:#000}.next-error-h1{border-right:1px solid rgba(255,255,255,.3)}}"}}],["$","h1",null,{"className":"next-error-h1","style":"$0:t:t:d:r:props:children:1:props:children:1:props:children:5:props:children:props:notFound:0:1:props:children:props:children:1:props:style","children":404}],["$","div",null,{"style":"$0:t:t:d:r:props:children:1:props:children:1:props:children:5:props:children:props:notFound:0:1:props:children:props:children:2:props:style","children":["$","h2",null,{"style":"$0:t:t:d:r:props:children:1:props:children:1:props:children:5:props:children:props:notFound:0:1:props:children:props:children:2:props:children:props:style","children":"This page could not be found."}]}]]}]}]],null,["$","$Lf",null,{"children":["$","$10",null,{"name":"Next.MetadataOutlet","children":"$@11"}]}]]}],"p":"$@12","v":null,"s":"$a"}}]]
+b:[["children",{"s":"/_not-found","h":96,"d":{"r":["$","$1","c",{"children":[null,["$","$L7",null,{"parallelRouterKey":"children","template":["$","$L8",null,{}]}]]}],"p":"$@c","v":"$d","s":"$a"},"c":"$Qe"}]]
+0:{"t":{"t":{"s":"","h":80,"d":{"r":["$","$1","c",{"children":[[["$","link","0",{"rel":"stylesheet","href":"/_next/static/chunks/2m0543_zcjs7-.css","precedence":"next"}],["$","script","script-0",{"src":"/_next/static/chunks/0umf92h1sb77c.js","async":true}],["$","script","script-1",{"src":"/_next/static/chunks/3-olfw19x5lqo.js","async":true}]],["$","html",null,{"lang":"en","children":[["$","head",null,{"children":[["$","link",null,{"rel":"preconnect","href":"https://fonts.googleapis.com"}],["$","link",null,{"rel":"preconnect","href":"https://fonts.gstatic.com","crossOrigin":"anonymous"}],["$","link",null,{"href":"https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:ital,wght@0,300;0,400;0,500;0,600;1,400&family=Outfit:wght@300;400;500;600;700&display=swap","rel":"stylesheet"}],["$","link",null,{"rel":"stylesheet","href":"https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"}]]}],["$","body",null,{"suppressHydrationWarning":true,"children":[["$","div",null,{"className":"site-grid-lines","aria-hidden":"true","children":[["$","div",null,{"className":"grid-line"}],["$","div",null,{"className":"grid-line"}],["$","div",null,{"className":"grid-line"}],["$","div",null,{"className":"grid-line"}]]}],["$","div",null,{"className":"ambient-glow ambient-glow-top","aria-hidden":"true"}],["$","div",null,{"className":"ambient-glow ambient-glow-bottom","aria-hidden":"true"}],["$","$L4",null,{}],["$","$L5",null,{}],["$","$L6",null,{"children":["$","$L7",null,{"parallelRouterKey":"children","template":["$","$L8",null,{}],"notFound":[[["$","title",null,{"children":"404: This page could not be found."}],["$","div",null,{"style":{"fontFamily":"system-ui,\"Segoe UI\",Roboto,Helvetica,Arial,sans-serif,\"Apple Color Emoji\",\"Segoe UI Emoji\"","height":"100vh","textAlign":"center","display":"flex","flexDirection":"column","alignItems":"center","justifyContent":"center"},"children":["$","div",null,{"children":[["$","style",null,{"dangerouslySetInnerHTML":{"__html":"body{color:#000;background:#fff;margin:0}.next-error-h1{border-right:1px solid rgba(0,0,0,.3)}@media (prefers-color-scheme:dark){body{color:#fff;background:#000}.next-error-h1{border-right:1px solid rgba(255,255,255,.3)}}"}}],["$","h1",null,{"className":"next-error-h1","style":{"display":"inline-block","margin":"0 20px 0 0","padding":"0 23px 0 0","fontSize":24,"fontWeight":500,"verticalAlign":"top","lineHeight":"49px"},"children":404}],["$","div",null,{"style":{"display":"inline-block"},"children":["$","h2",null,{"style":{"fontSize":14,"fontWeight":400,"lineHeight":"49px","margin":0},"children":"This page could not be found."}]}]]}]}]],[]]}]}]]}]]}]]}],"p":"$@9","v":null,"s":"$a"},"c":"$Qb"},"h":{"r":["$","$1","h",{"children":[["$","meta",null,{"name":"robots","content":"noindex"}],["$","$L14",null,{"children":[["$","meta","0",{"charSet":"utf-8"}],["$","meta","1",{"name":"viewport","content":"width=device-width, initial-scale=1"}]]}],["$","$L16",null,{"children":[["$","div",null,{"hidden":true,"children":["$","$10",null,{"name":"Next.Metadata","children":[["$","title","0",{"children":"Alok Singh Rathod | Frontend & MERN Architect | Founder @ Kurukshetra Coding School"}],["$","meta","1",{"name":"description","content":"Portfolio of Alok Singh Rathod — Frontend Specialist, Full-Stack MERN Architect, Technical Educator, Founder & Entrepreneur based in Bhopal, India."}],["$","meta","2",{"name":"author","content":"Alok Singh Rathod"}],["$","meta","3",{"name":"keywords","content":"Alok Singh Rathod, Frontend Developer, MERN Stack Developer, React, Next.js, Three.js, Lenis, Kurukshetra Coding School, Bhopal, Web Development"}],["$","meta","4",{"property":"og:title","content":"Alok Singh Rathod | Frontend & MERN Architect | Founder @ Kurukshetra Coding School"}],["$","meta","5",{"property":"og:description","content":"Portfolio of Alok Singh Rathod — Frontend Specialist, Full-Stack MERN Architect, Technical Educator, Founder & Entrepreneur based in Bhopal, India."}],["$","meta","6",{"property":"og:image","content":"http://localhost:3000/images/alok-executive-designed.jpg"}],["$","meta","7",{"property":"og:type","content":"website"}],["$","meta","8",{"name":"twitter:card","content":"summary_large_image"}],["$","meta","9",{"name":"twitter:title","content":"Alok Singh Rathod | Frontend & MERN Architect | Founder @ Kurukshetra Coding School"}],"$L17","$L18","$L19","$L1a"]}]}],null]}],null]}],"p":"$@1b","v":null,"s":"$a"}},"a":"$@1c","u":"$@1d","b":"LoGJJ5ei1mVwsFfdR6qrv"}
+1e:I[27201,["$2","$3"],"IconMark"]
+11:null
+17:["$","meta","10",{"name":"twitter:description","content":"Portfolio of Alok Singh Rathod — Frontend Specialist, Full-Stack MERN Architect, Technical Educator, Founder & Entrepreneur based in Bhopal, India."}]
+18:["$","meta","11",{"name":"twitter:image","content":"http://localhost:3000/images/alok-executive-designed.jpg"}]
+19:["$","link","12",{"rel":"icon","href":"/logo.png"}]
+1a:["$","$L1e","13",{}]
+a:300
+1d:true
+a:C
+1c:0
+c:"$undefined"
+9:"$undefined"
+1b:"$undefined"
+12:"$undefined"
