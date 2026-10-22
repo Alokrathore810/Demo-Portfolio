@@ -108,7 +108,11 @@ self.__SERVER_FILES_MANIFEST={
     "outputFileTracingRoot": "C:\\Users\\Asus_Alok\\Desktop\\My Project\\My Portfolio",
     "allowedDevOrigins": [
       "127.0.0.1",
-      "localhost"
+      "localhost",
+      "192.168.29.46",
+      "192.168.29.*",
+      "192.168.*.*",
+      "*.local"
     ],
     "enablePrerenderSourceMaps": true,
     "cacheComponents": false,
