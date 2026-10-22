@@ -259,20 +259,40 @@ img {
   transform: translate(2px, -2px);
 }
 
+.nav-actions {
+  align-items: center;
+  gap: .65rem;
+  display: flex;
+}
+
 .mobile-toggle-btn {
+  border: 1px solid var(--hairline-hover);
+  cursor: pointer;
+  width: 36px;
+  height: 36px;
+  transition: all var(--transition-fast);
+  background: #ffffff0d;
+  border-radius: 9999px;
   flex-direction: column;
+  flex-shrink: 0;
   justify-content: center;
-  gap: 5px;
-  width: 32px;
-  height: 32px;
+  align-items: center;
+  gap: 4px;
+  padding: 0;
   display: none;
+}
+
+.mobile-toggle-btn:hover, .mobile-toggle-btn:focus-visible {
+  border-color: var(--accent-amber);
+  background: #ffffff1f;
 }
 
 .mobile-toggle-btn .bar {
   background-color: var(--ink-primary);
-  width: 22px;
+  width: 17px;
   height: 1.5px;
   transition: var(--transition-fast);
+  border-radius: 2px;
 }
 
 .mobile-drawer {
@@ -2472,6 +2492,28 @@ img {
 }
 
 @media (max-width: 900px) {
+  .editorial-header {
+    padding: 0 .85rem;
+    top: .75rem;
+  }
+
+  .nav-pill-container {
+    justify-content: space-between;
+    gap: .75rem;
+    width: 100%;
+    max-width: 560px;
+    padding: .45rem .65rem .45rem 1.15rem;
+  }
+
+  .brand-name {
+    font-size: 1.15rem;
+  }
+
+  .btn-talk {
+    padding: .42rem .85rem;
+    font-size: .7rem;
+  }
+
   .nav-menu {
     display: none;
   }
@@ -2549,6 +2591,35 @@ img {
 }
 
 @media (max-width: 600px) {
+  .editorial-header {
+    padding: 0 .5rem;
+    top: .5rem;
+  }
+
+  .nav-pill-container {
+    gap: .5rem;
+    padding: .38rem .55rem .38rem 1rem;
+  }
+
+  .brand-name {
+    font-size: 1.05rem;
+  }
+
+  .btn-talk {
+    gap: .3rem;
+    padding: .38rem .65rem;
+    font-size: .68rem;
+  }
+
+  .hero-portrait-frame {
+    width: 220px;
+    height: 270px;
+  }
+
+  .hero-title {
+    font-size: 3.2rem;
+  }
+
   .container {
     padding: 0 1.25rem;
   }
@@ -2612,6 +2683,16 @@ img {
   .motion-toggle-pill {
     bottom: 1.25rem;
     right: 1.25rem;
+  }
+}
+
+@media (max-width: 380px) {
+  .btn-talk {
+    display: none;
+  }
+
+  .brand-name {
+    font-size: .98rem;
   }
 }
 

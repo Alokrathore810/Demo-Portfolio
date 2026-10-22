@@ -18,27 +18,147 @@ var __TURBOPACK__imported__module__$5b$project$5d2f$components$2f$CursorSpotligh
 ;
 ;
 ;
+const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://aloksinghrathod.dev';
 const metadata = {
-    metadataBase: new URL('http://localhost:3000'),
-    title: 'Alok Singh Rathod | Frontend & MERN Architect | Founder @ Kurukshetra Coding School',
-    description: 'Portfolio of Alok Singh Rathod — Frontend Specialist, Full-Stack MERN Architect, Technical Educator, Founder & Entrepreneur based in Bhopal, India.',
-    keywords: 'Alok Singh Rathod, Frontend Developer, MERN Stack Developer, React, Next.js, Three.js, Lenis, Kurukshetra Coding School, Bhopal, Web Development',
+    metadataBase: new URL(siteUrl),
+    title: {
+        default: 'Alok Singh Rathod | Frontend & MERN Architect | Founder @ Kurukshetra Coding School',
+        template: '%s | Alok Singh Rathod'
+    },
+    description: 'Portfolio of Alok Singh Rathod — Frontend Specialist, Full-Stack MERN Architect, Technical Educator, and Founder of Kurukshetra Coding School based in Bhopal, MP, India.',
+    keywords: [
+        'Alok Singh Rathod',
+        'Alok Rathod',
+        'Frontend Specialist Bhopal',
+        'MERN Stack Developer Bhopal',
+        'Full Stack Architect India',
+        'React Developer Bhopal',
+        'Next.js Three.js Portfolio',
+        'Kurukshetra Coding School',
+        'Web Development Mentorship',
+        'RozgarSetu',
+        'CPCT Master'
+    ],
     authors: [
         {
-            name: 'Alok Singh Rathod'
+            name: 'Alok Singh Rathod',
+            url: siteUrl
         }
     ],
+    creator: 'Alok Singh Rathod',
+    publisher: 'Alok Singh Rathod',
+    formatDetection: {
+        email: true,
+        address: true,
+        telephone: true
+    },
+    alternates: {
+        canonical: '/'
+    },
     openGraph: {
         title: 'Alok Singh Rathod | Frontend & MERN Architect | Founder @ Kurukshetra Coding School',
-        description: 'Portfolio of Alok Singh Rathod — Frontend Specialist, Full-Stack MERN Architect, Technical Educator, Founder & Entrepreneur based in Bhopal, India.',
+        description: 'High-performance web architecture, modern React/Next.js systems, and engineering mentorship by Alok Singh Rathod in Bhopal, MP.',
+        url: siteUrl,
+        siteName: 'Alok Singh Rathod Portfolio',
+        images: [
+            {
+                url: '/images/alok-executive-designed.jpg',
+                width: 1200,
+                height: 630,
+                alt: 'Alok Singh Rathod - Frontend & MERN Architect, Founder @ Kurukshetra Coding School'
+            }
+        ],
+        locale: 'en_IN',
+        type: 'website'
+    },
+    twitter: {
+        card: 'summary_large_image',
+        title: 'Alok Singh Rathod | Frontend & MERN Architect',
+        description: 'Boutique web engineering, MERN architecture, and technical education in Central India.',
         images: [
             '/images/alok-executive-designed.jpg'
         ],
-        type: 'website'
+        creator: '@eralokrathod'
+    },
+    robots: {
+        index: true,
+        follow: true,
+        googleBot: {
+            index: true,
+            follow: true,
+            'max-video-preview': -1,
+            'max-image-preview': 'large',
+            'max-snippet': -1
+        }
     },
     icons: {
-        icon: '/logo.png'
+        icon: '/logo.png',
+        apple: '/logo.png'
     }
+};
+const jsonLd = {
+    '@context': 'https://schema.org',
+    '@graph': [
+        {
+            '@type': 'Person',
+            '@id': `${siteUrl}/#person`,
+            name: 'Alok Singh Rathod',
+            jobTitle: 'Frontend Specialist & Full-Stack MERN Architect',
+            description: 'Founder of Kurukshetra Coding School, architecting high-performance web applications and mentoring next-generation software engineers.',
+            url: siteUrl,
+            image: `${siteUrl}/images/alok-executive-designed.jpg`,
+            email: 'eralokrathod@gmail.com',
+            telephone: '+918959478949',
+            address: {
+                '@type': 'PostalAddress',
+                addressLocality: 'Bhopal',
+                addressRegion: 'Madhya Pradesh',
+                addressCountry: 'India'
+            },
+            sameAs: [
+                'https://github.com/eralokrathod',
+                'https://www.linkedin.com/in/alokrathod',
+                'https://kurukshetra.edu'
+            ],
+            knowsAbout: [
+                'React.js',
+                'Next.js',
+                'JavaScript (ES6+)',
+                'Node.js',
+                'Express.js',
+                'MongoDB',
+                'Three.js',
+                'Lenis Smooth Scroll',
+                'System Architecture',
+                'Frontend Performance Optimization'
+            ]
+        },
+        {
+            '@type': 'EducationalOrganization',
+            '@id': `${siteUrl}/#organization`,
+            name: 'Kurukshetra Coding School',
+            url: `${siteUrl}/#academy`,
+            founder: {
+                '@id': `${siteUrl}/#person`
+            },
+            address: {
+                '@type': 'PostalAddress',
+                addressLocality: 'Bhopal',
+                addressRegion: 'Madhya Pradesh',
+                addressCountry: 'India'
+            },
+            description: 'Premier developer education hub in Central India offering production-grade capstone mentorship in MERN, React, and Full-Stack Engineering.'
+        },
+        {
+            '@type': 'WebSite',
+            '@id': `${siteUrl}/#website`,
+            url: siteUrl,
+            name: 'Alok Singh Rathod — Architecture & Portfolio',
+            publisher: {
+                '@id': `${siteUrl}/#person`
+            }
+        }
+    ]
 };
 function RootLayout({ children }) {
     return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("html", {
@@ -51,7 +171,7 @@ function RootLayout({ children }) {
                         href: "https://fonts.googleapis.com"
                     }, void 0, false, {
                         fileName: "[project]/app/layout.jsx",
-                        lineNumber: 27,
+                        lineNumber: 148,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("link", {
@@ -60,7 +180,7 @@ function RootLayout({ children }) {
                         crossOrigin: "anonymous"
                     }, void 0, false, {
                         fileName: "[project]/app/layout.jsx",
-                        lineNumber: 28,
+                        lineNumber: 149,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("link", {
@@ -68,7 +188,7 @@ function RootLayout({ children }) {
                         rel: "stylesheet"
                     }, void 0, false, {
                         fileName: "[project]/app/layout.jsx",
-                        lineNumber: 29,
+                        lineNumber: 150,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("link", {
@@ -76,13 +196,23 @@ function RootLayout({ children }) {
                         href: "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
                     }, void 0, false, {
                         fileName: "[project]/app/layout.jsx",
-                        lineNumber: 33,
+                        lineNumber: 154,
+                        columnNumber: 9
+                    }, this),
+                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("script", {
+                        type: "application/ld+json",
+                        dangerouslySetInnerHTML: {
+                            __html: JSON.stringify(jsonLd)
+                        }
+                    }, void 0, false, {
+                        fileName: "[project]/app/layout.jsx",
+                        lineNumber: 158,
                         columnNumber: 9
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/app/layout.jsx",
-                lineNumber: 26,
+                lineNumber: 147,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("body", {
@@ -96,34 +226,34 @@ function RootLayout({ children }) {
                                 className: "grid-line"
                             }, void 0, false, {
                                 fileName: "[project]/app/layout.jsx",
-                                lineNumber: 41,
+                                lineNumber: 166,
                                 columnNumber: 11
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                 className: "grid-line"
                             }, void 0, false, {
                                 fileName: "[project]/app/layout.jsx",
-                                lineNumber: 42,
+                                lineNumber: 167,
                                 columnNumber: 11
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                 className: "grid-line"
                             }, void 0, false, {
                                 fileName: "[project]/app/layout.jsx",
-                                lineNumber: 43,
+                                lineNumber: 168,
                                 columnNumber: 11
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                 className: "grid-line"
                             }, void 0, false, {
                                 fileName: "[project]/app/layout.jsx",
-                                lineNumber: 44,
+                                lineNumber: 169,
                                 columnNumber: 11
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/app/layout.jsx",
-                        lineNumber: 40,
+                        lineNumber: 165,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -131,7 +261,7 @@ function RootLayout({ children }) {
                         "aria-hidden": "true"
                     }, void 0, false, {
                         fileName: "[project]/app/layout.jsx",
-                        lineNumber: 48,
+                        lineNumber: 173,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -139,36 +269,36 @@ function RootLayout({ children }) {
                         "aria-hidden": "true"
                     }, void 0, false, {
                         fileName: "[project]/app/layout.jsx",
-                        lineNumber: 49,
+                        lineNumber: 174,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$CursorSpotlight$2e$jsx__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["default"], {}, void 0, false, {
                         fileName: "[project]/app/layout.jsx",
-                        lineNumber: 52,
+                        lineNumber: 177,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ThreeBackground$2e$jsx__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["default"], {}, void 0, false, {
                         fileName: "[project]/app/layout.jsx",
-                        lineNumber: 55,
+                        lineNumber: 180,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$SmoothScroll$2e$jsx__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["default"], {
                         children: children
                     }, void 0, false, {
                         fileName: "[project]/app/layout.jsx",
-                        lineNumber: 58,
+                        lineNumber: 183,
                         columnNumber: 9
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/app/layout.jsx",
-                lineNumber: 38,
+                lineNumber: 163,
                 columnNumber: 7
             }, this)
         ]
     }, void 0, true, {
         fileName: "[project]/app/layout.jsx",
-        lineNumber: 25,
+        lineNumber: 146,
         columnNumber: 5
     }, this);
 }
