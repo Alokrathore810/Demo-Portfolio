@@ -334,12 +334,12 @@ export default function HomePage() {
             
             <div className="candid-portrait-card">
               <img 
-                src="/images/alok-candid-suit.jpg" 
+                src="/images/alok-studio-founder.jpg" 
                 alt="Alok Singh Rathod - Founder & Lead Instructor" 
                 className="candid-img"
                 loading="lazy"
                 width="340"
-                height="240"
+                height="255"
                />
               <div className="candid-caption">
                 <span className="caption-name">Alok Singh Rathod</span>
