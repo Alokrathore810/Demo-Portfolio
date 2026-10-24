@@ -1020,6 +1020,51 @@ img {
   font-size: .68rem;
 }
 
+.photo-switch-pills {
+  z-index: 3;
+  gap: .35rem;
+  display: flex;
+  position: absolute;
+  bottom: .85rem;
+  right: .85rem;
+}
+
+.photo-pill-btn {
+  -webkit-backdrop-filter: blur(8px);
+  color: var(--ink-secondary);
+  font-family: var(--font-mono);
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  background: #08090ec7;
+  border: 1px solid #ffffff26;
+  border-radius: 999px;
+  padding: .28rem .6rem;
+  font-size: .62rem;
+}
+
+.photo-pill-btn:hover {
+  color: var(--ink-primary);
+  border-color: #fbbf2480;
+  transform: translateY(-1px);
+}
+
+.photo-pill-btn.active {
+  border-color: var(--accent-amber);
+  color: var(--accent-amber);
+  background: #fbbf2440;
+  font-weight: 600;
+}
+
+.executive-founder-card {
+  margin-top: .5rem;
+}
+
+.executive-founder-card .studio-img-wrap {
+  height: 320px;
+}
+
 .editorial-thesis-quote {
   letter-spacing: -.03em;
   color: var(--ink-primary);

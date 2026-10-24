@@ -6,14 +6,60 @@ import MotionController from '../components/MotionController';
 
 export default function HomePage() {
   useEffect(() => {
-    // 1. Essence Section - Discipline Cards Interactive Click
+    // 1. Essence Section - Discipline Cards Interactive Click & Photo Sync
     const disciplineCards = document.querySelectorAll('.discipline-card');
+    const photoPills = document.querySelectorAll('.photo-pill-btn');
+    const execImg = document.getElementById('essenceExecutiveImg');
+    const imgBadge = document.getElementById('essenceImgBadge');
+
+    function switchPhoto(src, badgeText, activeKey) {
+      if (execImg && src) {
+        execImg.style.opacity = '0';
+        setTimeout(() => {
+          execImg.src = src;
+          execImg.style.opacity = '1';
+        }, 150);
+      }
+      if (imgBadge && badgeText) {
+        imgBadge.textContent = badgeText;
+      }
+      if (photoPills.length > 0) {
+        photoPills.forEach((p) => {
+          if (p.getAttribute('data-key') === activeKey || p.getAttribute('data-src') === src) {
+            p.classList.add('active');
+          } else {
+            p.classList.remove('active');
+          }
+        });
+      }
+    }
+
     disciplineCards.forEach((card) => {
       card.addEventListener('click', () => {
         disciplineCards.forEach((c) => c.classList.remove('active'));
         card.classList.add('active');
+        const tab = card.getAttribute('data-tab');
+        if (tab === 'build') {
+          switchPhoto('/images/alok-executive-designed.jpg', 'TECH FOUNDER & ARCHITECT', 'exec');
+        } else if (tab === 'teach') {
+          switchPhoto('/images/alok-candid-suit.jpg', 'LEADERSHIP & PEDAGOGY', 'suit');
+        } else if (tab === 'lead') {
+          switchPhoto('/images/alok-outdoor-candid.jpg', 'CIVIC ENTERPRISE & MP ONLINE', 'candid');
+        }
       });
     });
+
+    if (photoPills.length > 0) {
+      photoPills.forEach((btn) => {
+        btn.addEventListener('click', (e) => {
+          e.stopPropagation();
+          const src = btn.getAttribute('data-src');
+          const badge = btn.getAttribute('data-badge');
+          const key = btn.getAttribute('data-key');
+          switchPhoto(src, badge, key);
+        });
+      });
+    }
 
     // 2. Animated Counter Observer
     const counterElements = document.querySelectorAll('.counter-val');
@@ -178,7 +224,7 @@ export default function HomePage() {
             <span className="discipline-tag">FRONTEND ARCHITECTURE</span>
             <span className="discipline-tag">MERN STACK SYSTEMS</span>
             <span className="discipline-tag">FOUNDER @ KURUKSHETRA</span>
-            <span className="discipline-tag">TECH ENTREPRENEURSHIP</span>
+            <span className="discipline-tag">MP ONLINE &amp; CIVIC SERVICES</span>
           </div>
         </div>
 
@@ -273,8 +319,8 @@ export default function HomePage() {
             <span className="metric-desc">production platforms & enterprise tools deployed</span>
           </div>
           <div className="metric-block" data-reveal="true" data-reveal-delay="2">
-            <span className="metric-num"><span className="counter-val" data-target="95">0</span><span className="plus">%</span></span>
-            <span className="metric-desc">practical capstone project completion rate</span>
+            <span className="metric-num"><span className="counter-val" data-target="5000">0</span><span className="plus">+</span></span>
+            <span className="metric-desc">citizens &amp; students assisted via MP Online &amp; civic tech</span>
           </div>
           <div className="metric-block metric-link-block">
             <a href="#academy" className="proof-action-link">
@@ -343,7 +389,73 @@ export default function HomePage() {
                />
               <div className="candid-caption">
                 <span className="caption-name">Alok Singh Rathod</span>
-                <span className="caption-role">Founder & Lead Instructor · Kurukshetra</span>
+                <span className="caption-role">Founder &amp; Lead Instructor · Kurukshetra</span>
+              </div>
+            </div>
+
+            {/* Third Interactive Photo Card (Positioned directly opposite the 3 Disciplines) */}
+            <div className="candid-portrait-card executive-founder-card">
+              <div className="studio-img-wrap" style={{ height: '330px', position: 'relative' }}>
+                <img 
+                  src="/images/alok-executive-designed.jpg" 
+                  alt="Alok Singh Rathod - Tech Entrepreneur & MERN Architect" 
+                  className="studio-showcase-img"
+                  id="essenceExecutiveImg"
+                  loading="lazy"
+                  width="400"
+                  height="330"
+                  style={{ height: '100%', objectPosition: 'center 15%', transition: 'opacity 0.25s ease, transform 0.6s ease' }}
+                 />
+                <div className="studio-img-overlay"></div>
+                <div className="studio-badge-pill">
+                  <span className="pulse-indicator"></span>
+                  <span id="essenceImgBadge">TECH FOUNDER &amp; ARCHITECT</span>
+                </div>
+
+                <div className="photo-switch-pills">
+                  <button 
+                    type="button" 
+                    className="photo-pill-btn active" 
+                    data-src="/images/alok-executive-designed.jpg"
+                    data-badge="TECH FOUNDER &amp; ARCHITECT"
+                    data-key="exec"
+                    aria-label="Executive Tech Portrait"
+                  >
+                    Tech
+                  </button>
+                  <button 
+                    type="button" 
+                    className="photo-pill-btn" 
+                    data-src="/images/alok-candid-suit.jpg"
+                    data-badge="LEADERSHIP &amp; PEDAGOGY"
+                    data-key="suit"
+                    aria-label="Formal Suit Portrait"
+                  >
+                    Suit
+                  </button>
+                  <button 
+                    type="button" 
+                    className="photo-pill-btn" 
+                    data-src="/images/alok-outdoor-candid.jpg"
+                    data-badge="CIVIC ENTERPRISE &amp; MP ONLINE"
+                    data-key="candid"
+                    aria-label="Outdoor Candid"
+                  >
+                    Candid
+                  </button>
+                </div>
+              </div>
+              <div className="candid-caption">
+                <span className="caption-name">Alok Singh Rathod</span>
+                <span className="caption-role">Frontend &amp; MERN Architect · MP Online Enterprise</span>
+                <p style={{ fontFamily: 'var(--font-sans)', fontSize: '0.82rem', color: 'var(--ink-secondary)', marginTop: '0.5rem', lineHeight: '1.5' }}>
+                  Leading technical pedagogy and ground-level civic digital services across Madhya Pradesh.
+                </p>
+                <div style={{ display: 'flex', gap: '0.4rem', marginTop: '0.75rem', flexWrap: 'wrap' }}>
+                  <span className="d-tag">Architecture</span>
+                  <span className="d-tag">Pedagogy</span>
+                  <span className="d-tag">Civic Tech</span>
+                </div>
               </div>
             </div>
           </div>
@@ -357,6 +469,9 @@ export default function HomePage() {
             <div className="narrative-body">
               <p>
                 My path as an engineer started with curiosity about how the web functions at scale — from pixel rendering pipelines to distributed backend architectures. But as I built systems, I realized technical depth is only half the equation.
+              </p>
+              <p>
+                Operating a licensed <strong>MP Online &amp; Citizen Digital Services Center</strong> brought me face-to-face with everyday citizens, students, and job aspirants navigating complex government portals and certification workflows. Observing their real-world user friction firsthand inspired me to architect civic tech platforms like <em>SarkareeUpdate</em> and the <em>MP CPCT 2026 Examination Portal</em>.
               </p>
               <p>
                 Across tier-2 and tier-3 cities in India, thousands of eager minds are held back by theoretical, disconnected college syllabi. That conviction led to founding <strong>Kurukshetra Coding School</strong> in Bhopal. Here, we don't just teach syntax — we train students to think like product architects and build applications that solve immediate regional problems.
@@ -404,14 +519,15 @@ export default function HomePage() {
               <div className="discipline-card" data-tab="lead">
                 <div className="discipline-header">
                   <span className="discipline-idx">03</span>
-                  <h3 className="discipline-title">SCALE — Community Leadership & Production Products</h3>
+                  <h3 className="discipline-title">SCALE &amp; VENTURES — Civic Tech &amp; Community Leadership</h3>
                   <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="arrow-up-right"><path d="M7 7h10v10"></path><path d="M7 17 17 7"></path></svg>
                 </div>
                 <p className="discipline-desc">
-                  Guiding student cohorts through complete project lifecycles from ideation to cloud deployment, while shipping high-impact public tools like SarkareeUpdate, Deployer, and CPCT Examination Portal.
+                  Guiding student cohorts through complete project lifecycles from ideation to cloud deployment, while operating an MP Online citizen services enterprise and shipping high-impact public tools like SarkareeUpdate, Deployer, and CPCT Examination Portal.
                 </p>
                 <div className="discipline-tags">
                   <span className="d-tag">Kurukshetra Coding School</span>
+                  <span className="d-tag">MP Online Citizen Enterprise</span>
                   <span className="d-tag">SarkareeUpdate.com</span>
                   <span className="d-tag">Deployer Cloud</span>
                   <span className="d-tag">CPCT Portal</span>
@@ -499,7 +615,7 @@ export default function HomePage() {
               </div>
               <h3 className="project-heading">SarkareeUpdate Official Portal</h3>
               <p className="project-summary">
-                Official high-concurrency public portal engineered for instant delivery of government jobs, Sarkari results, admit cards, answer keys, and exam schedules. Built with a PWA-ready architecture, sub-second API responses, category-wise filters (Latest Jobs, Admit Cards, Results), quick search (Ctrl+K), and active status tags (Extended, Active, New) serving career aspirants across India.
+                Born out of grassroots observations at our MP Online center where candidates struggled with cluttered and slow government portals. Official high-concurrency public portal engineered for instant delivery of government jobs, Sarkari results, admit cards, answer keys, and exam schedules. Built with a PWA-ready architecture, sub-second API responses, category-wise filters (Latest Jobs, Admit Cards, Results), quick search (Ctrl+K), and active status tags (Extended, Active, New) serving career aspirants across India.
               </p>
               <div className="project-tech-tags">
                 <span className="p-tag">React.js</span>
@@ -627,7 +743,7 @@ export default function HomePage() {
               </div>
               <h3 className="project-heading">MP CPCT 2026 Apex Examination Portal</h3>
               <p className="project-summary">
-                India's apex virtual learning hub dedicated to MP CPCT computer certification, serving 12,450+ verified aspirants with a 98.4% pass rate. Features 7-chapter bilingual interactive textbook curriculum, 3D motherboard hardware physics labs, a bilingual typing benchmark engine (English 30+ WPM &amp; Hindi Remington GAIL 20+ WPM), and 100-MCQ timed mock tests with instant scorecards.
+                Directly engineered to overcome the high failure rates and bilingual typing bottlenecks faced by students visiting MP Online centers for government exam certifications. India's apex virtual learning hub dedicated to MP CPCT computer certification, serving 12,450+ verified aspirants with a 98.4% pass rate. Features 7-chapter bilingual interactive textbook curriculum, 3D motherboard hardware physics labs, a bilingual typing benchmark engine (English 30+ WPM &amp; Hindi Remington GAIL 20+ WPM), and 100-MCQ timed mock tests with instant scorecards.
               </p>
               <div className="project-tech-tags">
                 <span className="p-tag">React.js</span>
@@ -1114,6 +1230,20 @@ export default function HomePage() {
                   <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M7 7h10v10"></path><path d="M7 17 17 7"></path></svg>
                 </a>
               </div>
+            </div>
+          </div>
+
+          
+          <div className="timeline-row">
+            <div className="timeline-year-col">
+              <span className="t-year">2023 — Present</span>
+              <span className="t-square">□</span>
+            </div>
+            <div className="timeline-content-col">
+              <h3 className="t-title">Founder &amp; Operator — MP Online &amp; Digital Citizen Services</h3>
+              <p className="t-desc">
+                Established and operating an authorized MP Online center in Madhya Pradesh. Handled over 5,000+ citizen transactions, recruitment application filings, e-governance workflows, and digital documentation. This direct grassroots contact with everyday users provided the direct user research and operational empathy behind my civic software platforms.
+              </p>
             </div>
           </div>
 

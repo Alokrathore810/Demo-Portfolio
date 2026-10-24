@@ -1054,6 +1054,52 @@ img {
   color: var(--accent-amber);
 }
 
+.photo-switch-pills {
+  position: absolute;
+  bottom: 0.85rem;
+  right: 0.85rem;
+  z-index: 3;
+  display: flex;
+  gap: 0.35rem;
+}
+
+.photo-pill-btn {
+  background: rgba(8, 9, 14, 0.78);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  color: var(--ink-secondary);
+  font-family: var(--font-mono);
+  font-size: 0.62rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 0.28rem 0.6rem;
+  border-radius: 999px;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.photo-pill-btn:hover {
+  border-color: rgba(251, 191, 36, 0.5);
+  color: var(--ink-primary);
+  transform: translateY(-1px);
+}
+
+.photo-pill-btn.active {
+  background: rgba(251, 191, 36, 0.25);
+  border-color: var(--accent-amber);
+  color: var(--accent-amber);
+  font-weight: 600;
+}
+
+.executive-founder-card {
+  margin-top: 0.5rem;
+}
+
+.executive-founder-card .studio-img-wrap {
+  height: 320px;
+}
+
 .editorial-thesis-quote {
   font-size: clamp(2.6rem, 4.2vw, 4.2rem);
   font-weight: 400;

@@ -128,15 +128,61 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   // ==========================================================================
-  // 4. ESSENCE SECTION - DISCIPLINE CARDS INTERACTION
+  // 4. ESSENCE SECTION - DISCIPLINE CARDS INTERACTION & PHOTO SYNC
   // ==========================================================================
   const disciplineCards = document.querySelectorAll('.discipline-card');
+  const photoPills = document.querySelectorAll('.photo-pill-btn');
+  const execImg = document.getElementById('essenceExecutiveImg');
+  const imgBadge = document.getElementById('essenceImgBadge');
+
+  function switchPhoto(src, badgeText, activeKey) {
+    if (execImg && src) {
+      execImg.style.opacity = '0';
+      setTimeout(() => {
+        execImg.src = src;
+        execImg.style.opacity = '1';
+      }, 150);
+    }
+    if (imgBadge && badgeText) {
+      imgBadge.textContent = badgeText;
+    }
+    if (photoPills.length > 0) {
+      photoPills.forEach(p => {
+        if (p.getAttribute('data-key') === activeKey || p.getAttribute('data-src') === src) {
+          p.classList.add('active');
+        } else {
+          p.classList.remove('active');
+        }
+      });
+    }
+  }
+
   disciplineCards.forEach(card => {
     card.addEventListener('click', () => {
       disciplineCards.forEach(c => c.classList.remove('active'));
       card.classList.add('active');
+      const tab = card.getAttribute('data-tab');
+      if (tab === 'build') {
+        switchPhoto('./images/alok-executive-designed.jpg', 'TECH FOUNDER & ARCHITECT', 'exec');
+      } else if (tab === 'teach') {
+        switchPhoto('./images/alok-candid-suit.jpg', 'LEADERSHIP & PEDAGOGY', 'suit');
+      } else if (tab === 'lead') {
+        switchPhoto('./images/alok-outdoor-candid.jpg', 'CIVIC ENTERPRISE & MP ONLINE', 'candid');
+      }
     });
   });
+
+  if (photoPills.length > 0) {
+    photoPills.forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        const src = btn.getAttribute('data-src');
+        const badge = btn.getAttribute('data-badge');
+        const key = btn.getAttribute('data-key');
+        switchPhoto(src, badge, key);
+      });
+    });
+  }
 
   // ==========================================================================
   // 5. MOTION TOGGLE PILL (Sarthak Sharma Feature)
